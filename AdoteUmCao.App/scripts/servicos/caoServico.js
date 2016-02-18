@@ -5,10 +5,10 @@
         obterCaes: obterCaes
     }
 
-    function obterCaes() {
+    function obterCaes(areaMapa) {
         var defer = $q.defer();
 
-        $http.get(Util.obterUrlBase() + '/api/home/obterCaes')
+        $http.get(Util.obterUrlBase() + '/api/home/obterCaes?swLat=' + areaMapa.swLat + '&swLng=' + areaMapa.swLng + '&neLat=' + areaMapa.neLat + '&neLng=' + areaMapa.neLng)
        .success(function (data) {
            if (data != null) {
                if (data.Sucesso) {

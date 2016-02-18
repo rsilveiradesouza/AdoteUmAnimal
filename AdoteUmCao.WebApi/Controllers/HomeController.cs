@@ -16,12 +16,12 @@ namespace AdoteUmCao.WebApi.Controllers
         [HttpGet]
         [Route("obterCaes")]
         [Auth]
-        public CaesResposta ObterCaes()
+        public CaesResposta ObterCaes(double swLat, double swLng, double neLat, double neLng)
         {
             using (CaoServico CaoServico = new CaoServico())
             {
                 CaesResposta retorno = new CaesResposta();
-                retorno = CaoServico.ObterCaes();
+                retorno = CaoServico.ObterCaes(swLat, swLng, neLat, neLng);
 
                 return retorno;
             }

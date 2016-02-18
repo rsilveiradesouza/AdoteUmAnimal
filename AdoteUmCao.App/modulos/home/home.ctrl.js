@@ -2,10 +2,25 @@
     'use strict'
 
     $scope.iniciar = function () {
-        $scope.carregando = true;
-        $scope.MensagemHome = "Teste";
-        $scope.caes = Cao.obterCaes();
+        Util.mostrarLoading();
 
-        console.log($scope.caes);
+        Util.esconderLoading();
+        $scope.MensagemHome = "Teste";
+
+        /*Cao.obterCaes().then(function (data) {
+            $scope.caes = data.Caes;
+            console.log($scope.caes);
+
+            Util.esconderLoading();
+        }).catch(function (erros) {
+            Util.mostrarErro(erros);
+            console.log(erros);
+
+            Util.esconderLoading();
+        });*/
+    }
+
+    $scope.mostrarMapa = function () {
+
     }
 }]);

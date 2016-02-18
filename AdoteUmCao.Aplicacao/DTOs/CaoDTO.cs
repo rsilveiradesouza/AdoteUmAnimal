@@ -9,5 +9,6 @@ namespace AdoteUmCao.Aplicacao.DTOs
     public class CaoDTO
     {
         public string Nome { get; set; }
+        public LocalizacaoDTO Localizacao { get; set; }
     }
 }

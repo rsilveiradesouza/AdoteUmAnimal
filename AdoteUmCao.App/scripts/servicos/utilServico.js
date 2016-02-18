@@ -5,11 +5,23 @@
         obterArrayPaginas: obterArrayPaginas,
         mostrarErro: mostrarErro,
         mostrarSucesso: mostrarSucesso,
-        obterUrlBase: obterUrlBase
+        obterUrlBase: obterUrlBase,
+        mostrarLoading: mostrarLoading,
+        esconderLoading: esconderLoading
+    }
+
+    function mostrarLoading() {
+        document.getElementById("fullscreen_panel").style.display = "block";
+        document.getElementById("div_wait").style.display = "block";
+    }
+
+    function esconderLoading() {
+        document.getElementById("fullscreen_panel").style.display = "none";
+        document.getElementById("div_wait").style.display = "none";
     }
 
     function obterUrlBase() {
-        return 'http://localhost:9998';
+        return 'http://localhost:65303';
     }
 
     function obterArrayPaginas(paginaAtual, totalPaginas) {

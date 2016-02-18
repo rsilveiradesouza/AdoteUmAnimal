@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\LocalizacaoDTO.cs" />
     <Compile Include="DTOs\Requisicao\BaseRequisicao.cs" />
     <Compile Include="DTOs\Resposta\BaseResposta.cs" />
     <Compile Include="DTOs\CaoDTO.cs" />

@@ -1,0 +1,23 @@
+﻿<div ng-init="iniciar()" ng-cloak>
+    <div class="bottom-input z-depth-3 valign-wrapper bordered center-align white-text" style="height: 61px; width: 100%; border-top: 1px solid #d0d0d0; background-color: #3c9cdd;">
+        <div class="row valign-wrapper" style="width: 100%; margin-bottom: 0;">
+            <div class="col s3 valign">
+                <a class="waves-effect waves-light btn col s12" href="#/home">Home</a>
+            </div>
+
+            <div class="col s6 ">
+                <span class="valign">Mapa</span>
+            </div>
+
+            <div class="col s3 valign">
+                <a class="waves-effect waves-light btn col s12" href="#/camera">Cam</a>
+            </div>
+        </div>
+    </div>
+
+    <ng-map zoom="14" center="current-location" disable-default-u-i="true" style="height: calc(100% - 61px);">
+        <custom-control id="home" position="BOTTOM_RIGHT" index="1" on-click="minhaPosicao()">
+            <div style="background-color: black; color:#fff;cursor:pointer; margin: 15px;">Meu Local</div>
+        </custom-control>
+    </ng-map>
+</div>
