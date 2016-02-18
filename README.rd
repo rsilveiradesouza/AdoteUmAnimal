@@ -1,1 +1,1 @@
-Adote um c�o
+﻿Adote um cão
