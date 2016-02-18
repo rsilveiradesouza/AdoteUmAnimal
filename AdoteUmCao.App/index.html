@@ -1,0 +1,48 @@
+﻿<html ng-app="app">
+<head>
+    <title>Adote um Cão</title>
+
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+
+    <link href="scripts/framework/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="scripts/framework/alertify/alertify.default.css" rel="stylesheet" />
+    <script src="scripts/framework/jquery-2.1.4.min.js"></script>
+    <script src="scripts/framework/alertify/alertify.min.js"></script>
+    <script src="scripts/framework/angular.min.js"></script>
+    <script src="scripts/framework/angular-animate.min.js"></script>
+    <script src="scripts/framework/angular-cookies.min.js"></script>
+    <script src="scripts/framework/angular-route.min.js"></script>
+    <script src="scripts/framework/angular-sanitize.min.js"></script>
+    <script src="scripts/framework/angular-locale_pt-br.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/index.js"></script>
+</head>
+
+<body ng-controller='homeCtrl' ng-init="iniciar()">
+    <div id="wrapper">
+        <header id="header">
+           
+        </header>
+      
+        <main>
+            <div ng-view="">
+
+            </div>
+        </main>
+
+        <footer id="footer">
+           
+        </footer>
+    </div>
+
+    <!-- controles -->
+    <script src="modulos/home/home.ctrl.js"></script>
+    <!-- fim controles -->
+    <!-- servicos -->
+    <script src="scripts/servicos/caoServico.js"></script>
+    <script src="scripts/servicos/utilServico.js"></script>
+    <!-- fim servicos -->
+</body>
+</html>
