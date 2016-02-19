@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdoteUmCao.Infraestrutura.Entidades;
 
-namespace AdoteUmCao.Aplicacao.DTOs
+namespace AdoteUmCao.Infraestrutura.Entidades
 {
-    public class LocalizacaoDTO
+    public class Localizacao
     {
-        public LocalizacaoDTO()
+        public Localizacao()
         {
 
         }
 
-        public LocalizacaoDTO(Localizacao localizacao)
+        public Localizacao(Localizacao localizacao)
         {
             this.Id = localizacao.Id;
             this.DscEndereco = localizacao.DscEndereco;
-            this.Latitude = (double)localizacao.Latitude;
-            this.Longitude = (double)localizacao.Longitude;
+            this.Latitude = localizacao.Latitude;
+            this.Longitude = localizacao.Longitude;
             this.GeoLocalizacao = localizacao.GeoLocalizacao;
         }
 
         public int Id { get; set; }
         public string DscEndereco { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
         public string GeoLocalizacao { get; set; }
     }
 }

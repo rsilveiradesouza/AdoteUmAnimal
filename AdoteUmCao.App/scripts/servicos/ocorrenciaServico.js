@@ -1,14 +1,14 @@
-﻿angular.module('app').service('Cao', ['$http', '$q', 'Util', function ($http, $q, Util) {
+﻿angular.module('app').service('Ocorrencia', ['$http', '$q', 'Util', function ($http, $q, Util) {
     'use strict'
 
     return {
-        obterCaes: obterCaes
+        obterOcorrencias: obterOcorrencias
     }
 
-    function obterCaes(areaMapa) {
+    function obterOcorrencias(areaMapa) {
         var defer = $q.defer();
 
-        $http.get(Util.obterUrlBase() + '/api/home/obterCaes?swLat=' + areaMapa.swLat + '&swLng=' + areaMapa.swLng + '&neLat=' + areaMapa.neLat + '&neLng=' + areaMapa.neLng)
+        $http.get(Util.obterUrlBase() + '/api/home/obterOcorrencias?swLat=' + areaMapa.swLat + '&swLng=' + areaMapa.swLng + '&neLat=' + areaMapa.neLat + '&neLng=' + areaMapa.neLng)
        .success(function (data) {
            if (data != null) {
                if (data.Sucesso) {
@@ -19,7 +19,7 @@
                }
            }
            else {
-               defer.reject(['Erro ao obter cães']);
+               defer.reject(['Erro ao obter as ocorrências']);
            }
        })
        .error(function (data) {

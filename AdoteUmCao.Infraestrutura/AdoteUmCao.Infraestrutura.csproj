@@ -55,17 +55,44 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexto.cs" />
+    <Compile Include="Entidades\TipoOcorrencia.cs" />
+    <Compile Include="Entidades\Localizacao.cs" />
+    <Compile Include="Entidades\Ocorrencia.cs" />
+    <Compile Include="Entidades\UsuarioAnimalPreferencia.cs" />
+    <Compile Include="Entidades\Raca.cs" />
+    <Compile Include="Entidades\Tipo.cs" />
+    <Compile Include="Entidades\TipoAnimal.cs" />
+    <Compile Include="Entidades\Cor.cs" />
+    <Compile Include="Entidades\Animal.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Mapeamentos\OcorrenciaMapeamento.cs" />
+    <Compile Include="Mapeamentos\UsuarioAnimalPreferenciaMapeamento.cs" />
+    <Compile Include="Mapeamentos\UsuarioMapeamento.cs" />
+    <Compile Include="Mapeamentos\TipoOcorrenciaMapeamento.cs" />
+    <Compile Include="Mapeamentos\LocalizacaoMapeamento.cs" />
+    <Compile Include="Mapeamentos\CorMapeamento.cs" />
+    <Compile Include="Mapeamentos\AnimalMapeamento.cs" />
+    <Compile Include="Mapeamentos\TipoAnimalMapeamento.cs" />
+    <Compile Include="Mapeamentos\RacaMapeamento.cs" />
+    <Compile Include="Mapeamentos\TipoMapeamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\OcorrenciaRepositorio.cs" />
+    <Compile Include="Repositorios\UsuarioAnimalPreferenciaRepositorio.cs" />
+    <Compile Include="Repositorios\UsuarioRepositorio.cs" />
+    <Compile Include="Repositorios\TipoOcorrenciaRepositorio.cs" />
+    <Compile Include="Repositorios\LocallizacaoRepositorio.cs" />
+    <Compile Include="Repositorios\CorRepositorio.cs" />
+    <Compile Include="Repositorios\TipoAnimalRepositorio.cs" />
+    <Compile Include="Repositorios\RacaRepositorio.cs" />
+    <Compile Include="Repositorios\TipoRepositorio.cs" />
+    <Compile Include="Repositorios\AnimalRepositorio.cs" />
+    <Compile Include="Repositorios\BaseRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mapeamentos\" />
-    <Folder Include="Repositorios\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

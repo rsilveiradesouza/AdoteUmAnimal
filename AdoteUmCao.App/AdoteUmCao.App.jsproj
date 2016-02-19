@@ -164,6 +164,12 @@
     <Content Include="font\roboto\Roboto-Thin.ttf" />
     <Content Include="font\roboto\Roboto-Thin.woff" />
     <Content Include="font\roboto\Roboto-Thin.woff2" />
+    <Content Include="img\camera.svg" />
+    <Content Include="img\compartilhar.svg" />
+    <Content Include="img\config.svg" />
+    <Content Include="img\home.svg" />
+    <Content Include="img\lista.svg" />
+    <Content Include="img\mapa.svg" />
     <Content Include="img\osso.png" />
     <Content Include="img\osso.svg" />
     <Content Include="img\pata.png" />
@@ -325,7 +331,7 @@
     <Content Include="scripts\framework\jquery-2.1.4.min.js" />
     <Content Include="scripts\framework\ng-map.min.js" />
     <Content Include="scripts\servicos\utilServico.js" />
-    <Content Include="scripts\servicos\caoServico.js" />
+    <Content Include="scripts\servicos\ocorrenciaServico.js" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />
     <Content Include="merges\android\scripts\platformOverrides.js" />
     <Folder Include="merges\ios\" />

@@ -14,14 +14,14 @@ namespace AdoteUmCao.WebApi.Controllers
     public class HomeController : ApiController
     {
         [HttpGet]
-        [Route("obterCaes")]
+        [Route("obterOcorrencias")]
         [Auth]
-        public CaesResposta ObterCaes(double swLat, double swLng, double neLat, double neLng)
+        public OcorrenciasResposta ObterCaes(double swLat, double swLng, double neLat, double neLng)
         {
-            using (CaoServico CaoServico = new CaoServico())
+            using (OcorrenciaServico OcorrenciaServico = new OcorrenciaServico())
             {
-                CaesResposta retorno = new CaesResposta();
-                retorno = CaoServico.ObterCaes(swLat, swLng, neLat, neLng);
+                OcorrenciasResposta retorno = new OcorrenciasResposta();
+                retorno = OcorrenciaServico.ObterOcorrenciasMapa(swLat, swLng, neLat, neLng);
 
                 return retorno;
             }

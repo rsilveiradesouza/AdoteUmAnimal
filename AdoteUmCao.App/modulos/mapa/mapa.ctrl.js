@@ -1,25 +1,26 @@
-﻿angular.module('app').controller('mapaCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Cao', 'NgMap', '$timeout', function ($scope, $rootScope, $routeParams, Util, $location, Cao, NgMap, $timeout) {
+﻿angular.module('app').controller('mapaCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Ocorrencia', 'NgMap', '$timeout', function ($scope, $rootScope, $routeParams, Util, $location, Ocorrencia, NgMap, $timeout) {
     'use strict'
     var marcacao = [];
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
+        limparMarcacao();
 
-        $scope.Lat = "-22.906293";
-        $scope.Lng = "-43.1933349";
-
-        $rootScope.$on('mapInitialized', function (evt, map) {
+        var mapInit = $rootScope.$on('mapInitialized', function (evt, map) {
             $scope.map = map;
             $scope.meuLocal = map.getCenter();
             $scope.$apply();
 
-            carregarCaes();
+            carregarOcorrencias();
 
+            google.maps.event.clearListeners(map, 'bounds_changed');
             google.maps.event.addListener($scope.map, "bounds_changed", function () {
                 if (!$scope.markerClick) {
-                    carregarCaes();
+                    carregarOcorrencias();
                 }
             });
+
+            mapInit();
         });
     }
 
@@ -27,7 +28,7 @@
         $scope.map.panTo($scope.meuLocal);
     }
 
-    function carregarCaes() {
+    function carregarOcorrencias() {
         var bounds = $scope.map.getBounds();
 
         var swPoint = bounds.getSouthWest();
@@ -42,9 +43,9 @@
 
         console.log('Area do mapa:', areaMapa);
 
-        Cao.obterCaes(areaMapa).then(function (data) {
-            $scope.caes = data.Caes;
-            console.log('Cães encontrados:', $scope.caes);
+        Ocorrencia.obterOcorrencias(areaMapa).then(function (data) {
+            $scope.ocorrencias = data.Ocorrencias;
+            console.log('Ocorrências encontrados:', $scope.ocorrencias);
 
             popularMapa(data);
 
@@ -74,8 +75,8 @@
 
         var marcas = [];
 
-        for (var i = 0; i < data.Caes.length; i++) {
-            marcas.push({ LatLng: new google.maps.LatLng(parseFloat(data.Caes[i].Localizacao.Lat), parseFloat(data.Caes[i].Localizacao.Lng)), Endereco: data.Caes[i].Localizacao.Endereco, Nome: data.Caes[i].Nome, Index: (i + 1) });
+        for (var i = 0; i < data.Ocorrencias.length; i++) {
+            marcas.push({ LatLng: new google.maps.LatLng(parseFloat(data.Ocorrencias[i].Localizacao.Latitude), parseFloat(data.Ocorrencias[i].Localizacao.Longitude)), Endereco: data.Ocorrencias[i].Localizacao.DscEndereco, Nome: data.Ocorrencias[i].Animal.Nome, Descricao: data.Ocorrencias[i].Descricao, Foto: data.Ocorrencias[i].Animal.FotoUrl, Index: (i + 1) });
         }
 
         for (var i = 0; i < marcas.length; i++) {
@@ -105,10 +106,11 @@
                         content: '<div class="row" style="padding: 5px; margin-bottom: 0; width: 90%;">' +
                                     '<div class="col s12 valign-wrapper">' +
                                         '<div class="valign" style="padding: 2px; border: 1px solid black; border-radius: 5px; display: inline-block;">' +
-                                            '<img class="valign" src="img/pata.png" style="width: 32px; height: 32px;">' +
+                                            '<img class="valign" src="' + position.Foto + '" style="width: 50px; height: 50px;">' +
                                         '</div>' +
                                         '<span class="valing" style="margin-left: 5px;">' +
                                             'Nome: ' + position.Nome + '</br>' +
+                                            'Descrição: ' + position.Descricao + '</br>' +
                                             'Endereço: ' + position.Endereco +
                                         '</span>' +
                                     '</div>' +
@@ -135,6 +137,7 @@
         for (var i = 0; i < marcacao.length; i++) {
             marcacao[i].setMap(null);
         }
+
         marcacao = [];
     }
 }]);

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AdoteUmCao.Aplicacao.DTOs.Resposta
 {
-    public class CaesResposta : BaseResposta
+    public class AnimaisResposta : BaseResposta
     {
-        public List<CaoDTO> Caes { get; set; }
+        public List<AnimalDTO> Animais { get; set; }
     }
 }

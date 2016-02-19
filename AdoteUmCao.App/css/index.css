@@ -13,8 +13,16 @@
     display: none;
 }
 
+.nav-bar {
+    margin-bottom: 15px;
+}
+
 .gmnoprint {
     display: none !important;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 #div_wait {

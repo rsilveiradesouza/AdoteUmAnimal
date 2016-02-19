@@ -1,8 +1,10 @@
-﻿angular.module('app').controller('homeCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Cao', function ($scope, $rootScope, $routeParams, Util, $location, Cao) {
+﻿angular.module('app').controller('homeCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Ocorrencia', function ($scope, $rootScope, $routeParams, Util, $location, Ocorrencia) {
     'use strict'
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
+
+        $scope.obterFeed();
 
         Util.esconderLoading();
         $scope.MensagemHome = "Teste";
@@ -20,7 +22,7 @@
         });*/
     }
 
-    $scope.mostrarMapa = function () {
-
+    $scope.obterFeed = function () {
+       
     }
 }]);
