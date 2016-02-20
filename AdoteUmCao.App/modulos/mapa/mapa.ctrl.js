@@ -16,7 +16,7 @@
             google.maps.event.clearListeners(map, 'bounds_changed');
             google.maps.event.addListener($scope.map, "bounds_changed", function () {
                 if (!$scope.markerClick) {
-                    carregarOcorrencias();
+                    carregarOcorrencias(true);
                 }
             });
 
@@ -28,34 +28,45 @@
         $scope.map.panTo($scope.meuLocal);
     }
 
-    function carregarOcorrencias() {
+    function carregarOcorrencias(mudouLugar) {
+        if (!mudouLugar) {
+            Util.mostrarLoading();
+        }
+
         var bounds = $scope.map.getBounds();
+        console.log(bounds);
 
-        var swPoint = bounds.getSouthWest();
-        var nePoint = bounds.getNorthEast();
+        if (bounds != null) {
+            var swPoint = bounds.getSouthWest();
+            var nePoint = bounds.getNorthEast();
 
-        var areaMapa = {
-            swLat: swPoint.lat(),
-            swLng: swPoint.lng(),
-            neLat: nePoint.lat(),
-            neLng: nePoint.lng()
-        };
+            var areaMapa = {
+                swLat: swPoint.lat(),
+                swLng: swPoint.lng(),
+                neLat: nePoint.lat(),
+                neLng: nePoint.lng()
+            };
 
-        console.log('Area do mapa:', areaMapa);
+            console.log('Area do mapa:', areaMapa);
 
-        Ocorrencia.obterOcorrencias(areaMapa).then(function (data) {
-            $scope.ocorrencias = data.Ocorrencias;
-            console.log('Ocorrências encontrados:', $scope.ocorrencias);
+            Ocorrencia.obterOcorrencias(areaMapa).then(function (data) {
+                $scope.ocorrencias = data.Ocorrencias;
+                console.log('Ocorrências encontrados:', $scope.ocorrencias);
 
-            popularMapa(data);
+                popularMapa(data);
 
+                Util.esconderLoading();
+            }).catch(function (erros) {
+                Util.mostrarErro(erros);
+                console.log(erros);
+
+                Util.esconderLoading();
+            });
+        }
+        else {
+            Util.mostrarErro(["Não foi possível carregar sua atual posição, tente novamente."]);
             Util.esconderLoading();
-        }).catch(function (erros) {
-            Util.mostrarErro(erros);
-            console.log(erros);
-
-            Util.esconderLoading();
-        });
+        }
     }
 
     function popularMapa(data) {

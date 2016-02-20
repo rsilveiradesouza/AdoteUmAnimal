@@ -16,7 +16,7 @@ namespace AdoteUmCao.WebApi.Controllers
         [HttpGet]
         [Route("obterOcorrencias")]
         [Auth]
-        public OcorrenciasResposta ObterCaes(double swLat, double swLng, double neLat, double neLng)
+        public OcorrenciasResposta ObterOcorrencias(double swLat, double swLng, double neLat, double neLng)
         {
             using (OcorrenciaServico OcorrenciaServico = new OcorrenciaServico())
             {

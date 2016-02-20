@@ -17,7 +17,7 @@ namespace Duloren.Infraestrutura
         public Contexto()
             : base("Contexto")
         {
-            this.Database.Connection.ConnectionString = @"Data Source=PCPE01K920\SQLEXPRESS;Initial Catalog=AdoteUmAnimal;Trusted_Connection=false;User Id=tobrasil; Password=duloren2;";
+            this.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=AdoteUmAnimal;Trusted_Connection=false;User Id=tobrasil; Password=duloren2;";
         }
 
         public DbSet<Animal> Animais { get; set; }

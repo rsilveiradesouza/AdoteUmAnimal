@@ -23,6 +23,10 @@
            }
        })
        .error(function (data) {
+           if (data == null) {
+               data = "Algo deu errado! Tente novamente.";
+           }
+
            defer.reject([data]);
        });
 

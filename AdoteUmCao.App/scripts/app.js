@@ -1,5 +1,6 @@
 ﻿angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLocale', 'ngMap'])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $httpProvider) {
+        $httpProvider.interceptors.push('timeoutHttpIntercept');
 
         $routeProvider.when('/home', {
             controller: 'homeCtrl',
@@ -10,4 +11,12 @@
             templateUrl: 'modulos/mapa/mapa.html'
         })
         .otherwise({ redirectTo: '/home' });
+    })
+    .factory('timeoutHttpIntercept', function ($rootScope, $q) {
+        return {
+            'request': function (config) {
+                config.timeout = 5000;
+                return config;
+            }
+        };
     });

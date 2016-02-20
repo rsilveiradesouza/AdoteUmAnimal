@@ -167,6 +167,8 @@
     <Content Include="img\camera.svg" />
     <Content Include="img\compartilhar.svg" />
     <Content Include="img\config.svg" />
+    <Content Include="img\gps.svg" />
+    <Content Include="img\gps2.svg" />
     <Content Include="img\home.svg" />
     <Content Include="img\lista.svg" />
     <Content Include="img\mapa.svg" />
