@@ -41,6 +41,7 @@ namespace AdoteUmCao.Infraestrutura.Entidades
 
                 if (usuariosAnimaisPreferencias.Animal.TipoAnimal != null)
                 {
+                    this.Animal.TipoAnimal = new TipoAnimal();
                     this.Animal.TipoAnimal.Id = usuariosAnimaisPreferencias.Animal.TipoAnimal.Id;
                     this.Animal.TipoAnimal.TipoId = usuariosAnimaisPreferencias.Animal.TipoAnimal.TipoId;
                     this.Animal.TipoAnimal.RacaId = usuariosAnimaisPreferencias.Animal.TipoAnimal.RacaId;

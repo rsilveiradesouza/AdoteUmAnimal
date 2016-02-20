@@ -63,7 +63,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\OcorrenciaServico.cs" />
     <Compile Include="Servicos\BaseServico.cs" />
-    <Compile Include="Servicos\AnimalServico.cs" />
     <Compile Include="Utilitarios\Email.cs" />
     <Compile Include="Utilitarios\GerenciaException.cs" />
   </ItemGroup>
