@@ -22,7 +22,7 @@
 
     function obterUrlBase() {
         //return 'http://localhost:65303';
-        return 'http://localhost:9998';
+        return 'http://192.168.1.194:9998';
     }
 
     function obterArrayPaginas(paginaAtual, totalPaginas) {
