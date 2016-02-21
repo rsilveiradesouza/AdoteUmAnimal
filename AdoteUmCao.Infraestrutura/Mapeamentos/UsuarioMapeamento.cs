@@ -9,7 +9,7 @@ using AdoteUmCao.Infraestrutura.Entidades;
 
 namespace AdoteUmCao.Infraestrutura.Mapeamentos
 {
-    public class UsuarioMapeamento: EntityTypeConfiguration<Usuario>
+    public class UsuarioMapeamento : EntityTypeConfiguration<Usuario>
     {
         public UsuarioMapeamento()
         {
@@ -25,6 +25,9 @@ namespace AdoteUmCao.Infraestrutura.Mapeamentos
             Property(e => e.DataRegistro).HasColumnName("Data_Registro");
             Property(e => e.Email).HasColumnName("Email");
             Property(e => e.FotoUrl).HasColumnName("Foto_Url");
+            Property(e => e.TokenFacebook).HasColumnName("Token_Facebook");
+            Property(e => e.TokenTwitter).HasColumnName("Token_Twitter");
+            Property(e => e.TokenGoogle).HasColumnName("Token_Google");
             Property(e => e.Ativo).HasColumnName("Ativo");
         }
     }

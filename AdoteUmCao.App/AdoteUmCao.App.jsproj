@@ -164,6 +164,7 @@
     <Content Include="font\roboto\Roboto-Thin.ttf" />
     <Content Include="font\roboto\Roboto-Thin.woff" />
     <Content Include="font\roboto\Roboto-Thin.woff2" />
+    <Content Include="img\auth-icons.png" />
     <Content Include="img\camera.svg" />
     <Content Include="img\compartilhar.svg" />
     <Content Include="img\config.svg" />
@@ -176,6 +177,8 @@
     <Content Include="img\osso.svg" />
     <Content Include="img\pata.png" />
     <Content Include="index.html" />
+    <Content Include="modulos\login\login.ctrl.js" />
+    <Content Include="modulos\login\login.html" />
     <Content Include="modulos\mapa\mapa.ctrl.js" />
     <Content Include="modulos\mapa\mapa.html" />
     <Content Include="plugins\org.apache.cordova.camera\.fetch.json" />
@@ -329,9 +332,12 @@
     <Content Include="plugins\org.apache.cordova.network-information\tests\tests.js" />
     <Content Include="plugins\org.apache.cordova.network-information\www\Connection.js" />
     <Content Include="plugins\org.apache.cordova.network-information\www\network.js" />
+    <Content Include="scripts\framework\facebook-sdk.js" />
     <Content Include="scripts\framework\google-maps.js" />
     <Content Include="scripts\framework\jquery-2.1.4.min.js" />
     <Content Include="scripts\framework\ng-map.min.js" />
+    <Content Include="scripts\login-facebook.js" />
+    <Content Include="scripts\servicos\loginServico.js" />
     <Content Include="scripts\servicos\utilServico.js" />
     <Content Include="scripts\servicos\ocorrenciaServico.js" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />

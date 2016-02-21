@@ -52,6 +52,8 @@
     <Compile Include="DTOs\OcorrenciaDTO.cs" />
     <Compile Include="DTOs\RacaDTO.cs" />
     <Compile Include="DTOs\Requisicao\BaseRequisicao.cs" />
+    <Compile Include="DTOs\Requisicao\LoginFacebookRequisicao.cs" />
+    <Compile Include="DTOs\Resposta\UsuarioResposta.cs" />
     <Compile Include="DTOs\Resposta\OcorrenciasResposta.cs" />
     <Compile Include="DTOs\Resposta\BaseResposta.cs" />
     <Compile Include="DTOs\Resposta\AnimaisResposta.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="DTOs\UsuarioAnimalPreferenciaDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicos\LoginServico.cs" />
     <Compile Include="Servicos\OcorrenciaServico.cs" />
     <Compile Include="Servicos\BaseServico.cs" />
     <Compile Include="Utilitarios\Email.cs" />

@@ -26,6 +26,9 @@ namespace AdoteUmCao.Infraestrutura.Entidades
             this.FotoUrl = usuario.FotoUrl;
             this.Email = usuario.Email;
             this.Ativo = usuario.Ativo;
+            this.TokenFacebook = usuario.TokenFacebook;
+            this.TokenGoogle = usuario.TokenGoogle;
+            this.TokenTwitter = usuario.TokenTwitter;
 
             if (usuario.UsuarioAnimaisPreferencias != null)
             {
@@ -104,6 +107,9 @@ namespace AdoteUmCao.Infraestrutura.Entidades
         public DateTime DataRegistro { get; set; }
         public string Token { get; set; }
         public string TokenEmail { get; set; }
+        public string TokenFacebook { get; set; }
+        public string TokenGoogle { get; set; }
+        public string TokenTwitter { get; set; }
         public string Email { get; set; }
         public string Celular { get; set; }
         public string Telefone { get; set; }

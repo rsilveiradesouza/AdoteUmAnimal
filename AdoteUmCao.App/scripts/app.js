@@ -6,6 +6,10 @@
             controller: 'homeCtrl',
             templateUrl: 'modulos/home/home.html'
         })
+        .when('/login', {
+            controller: 'loginCtrl',
+            templateUrl: 'modulos/login/login.html'
+        })
         .when('/mapa', {
             controller: 'mapaCtrl',
             templateUrl: 'modulos/mapa/mapa.html'
