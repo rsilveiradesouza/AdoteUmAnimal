@@ -30,6 +30,7 @@ namespace AdoteUmCao.Aplicacao.DTOs
             this.TokenFacebook = usuario.TokenFacebook;
             this.TokenGoogle = usuario.TokenGoogle;
             this.TokenTwitter = usuario.TokenTwitter;
+            this.UsuarioFacebookId = usuario.UsuarioFacebookId;
 
             if (usuario.UsuarioAnimaisPreferencias != null)
             {
@@ -111,6 +112,7 @@ namespace AdoteUmCao.Aplicacao.DTOs
         public string TokenFacebook { get; set; }
         public string TokenGoogle { get; set; }
         public string TokenTwitter { get; set; }
+        public string UsuarioFacebookId { get; set; }
         public string Email { get; set; }
         public string Celular { get; set; }
         public string Telefone { get; set; }

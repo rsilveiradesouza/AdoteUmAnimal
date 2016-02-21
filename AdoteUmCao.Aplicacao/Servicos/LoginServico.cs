@@ -47,8 +47,8 @@ namespace AdoteUmCao.Aplicacao.Servicos
             {
                 Usuario entidade = new Usuario();
 
-                //verificar se já existe algum usuario com esse token do facebook
-                entidade = UsuarioRepositorio.GetSingle(u => u.TokenFacebook == login.Token, "UsuarioAnimaisPreferencias");
+                //verificar se já existe algum usuario com esse usuarioId do facebook
+                entidade = UsuarioRepositorio.GetSingle(u => u.UsuarioFacebookId == login.UsuarioId, "UsuarioAnimaisPreferencias");
 
                 if (entidade == null)
                 {
@@ -63,6 +63,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                         //caso não tenho nenhum token e nenhum usuario com o email, cadastrar esse usuario na base e redirecionar ele para concluir o cadastramento
                         entidade = new Usuario();
                         entidade.TokenFacebook = login.Token;
+                        entidade.UsuarioFacebookId = login.UsuarioId;
                         entidade.Nome = login.Nome;
                         entidade.Sobrenome = login.Sobrenome;
                         entidade.DataRegistro = DateTime.Now;
@@ -81,6 +82,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                     {
                         //caso tenha inserir/atualizar o token do facebook no usuario
                         entidade.TokenFacebook = login.Token;
+                        entidade.UsuarioFacebookId = login.UsuarioId;
                         entidade.Token = GerarToken(entidade.Nome, entidade.DataRegistro.ToShortTimeString());
 
                         UsuarioRepositorio.Update(entidade);
@@ -91,6 +93,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                 {
                     //caso já exista usuario na base com esse token do facebook, só é necessário atualizar o token dele
                     entidade.Token = GerarToken(entidade.Nome, entidade.DataRegistro.ToShortTimeString());
+                    entidade.TokenFacebook = login.Token;
 
                     UsuarioRepositorio.Update(entidade);
                     retorno.Usuario = new UsuarioDTO(entidade);

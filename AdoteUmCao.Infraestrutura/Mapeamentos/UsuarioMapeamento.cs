@@ -28,6 +28,7 @@ namespace AdoteUmCao.Infraestrutura.Mapeamentos
             Property(e => e.TokenFacebook).HasColumnName("Token_Facebook");
             Property(e => e.TokenTwitter).HasColumnName("Token_Twitter");
             Property(e => e.TokenGoogle).HasColumnName("Token_Google");
+            Property(e => e.UsuarioFacebookId).HasColumnName("Usuario_Facebook_Id");
             Property(e => e.Ativo).HasColumnName("Ativo");
         }
     }
