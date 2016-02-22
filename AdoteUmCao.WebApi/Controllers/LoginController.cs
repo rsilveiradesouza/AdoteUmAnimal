@@ -9,11 +9,12 @@ using AdoteUmCao.Aplicacao.DTOs.Resposta;
 using AdoteUmCao.WebApi.Autorizacao;
 using AdoteUmCao.Aplicacao.DTOs;
 using AdoteUmCao.Aplicacao.DTOs.Requisicao;
+using System.Web;
 
 namespace AdoteUmCao.WebApi.Controllers
 {
     [RoutePrefix("api/login")]
-    public class LoginController : BaseController
+    public class LoginController : ApiController
     {
         [HttpPost]
         [Route("entrarViaFacebook")]

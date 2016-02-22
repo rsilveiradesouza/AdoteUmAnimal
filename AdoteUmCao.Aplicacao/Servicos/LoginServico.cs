@@ -123,7 +123,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
             {
                 Usuario entidade = new Usuario();
 
-                entidade = UsuarioRepositorio.GetSingle(u => u.Token == token);
+                entidade = UsuarioRepositorio.GetSingle(u => u.Token == token, "UsuarioAnimaisPreferencias");
 
                 if (entidade != null)
                 {

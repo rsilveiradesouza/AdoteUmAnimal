@@ -16,7 +16,7 @@
         })
         .otherwise({ redirectTo: '/home' });
     })
-    .controller('mainCtrl', function ($rootScope, $q, $scope, $location, Util) {
+    .controller('mainCtrl', function ($rootScope, $q, $scope, $location, Util, Login) {
         $rootScope.$on('$locationChangeStart', function (event) {
             if ($rootScope.usuario == null) {
                 if ($location.$$path.indexOf("login") == -1) {

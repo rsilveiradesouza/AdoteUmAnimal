@@ -11,7 +11,7 @@ using AdoteUmCao.WebApi.Autorizacao;
 namespace AdoteUmCao.WebApi.Controllers
 {
     [RoutePrefix("api/home")]
-    public class HomeController : BaseController
+    public class HomeController : ApiController
     {
         [HttpGet]
         [Route("obterOcorrencias")]
@@ -37,6 +37,11 @@ namespace AdoteUmCao.WebApi.Controllers
             }
 
             return retorno;
+        }
+
+        public UsuarioResposta ObterUsuarioAuth()
+        {
+            return (UsuarioResposta)Request.Properties.Where(c => c.Key == "usuario").Select(c => c.Value).FirstOrDefault();
         }
     }
 }
