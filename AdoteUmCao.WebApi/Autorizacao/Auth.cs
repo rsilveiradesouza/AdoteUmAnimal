@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using AdoteUmCao.Aplicacao.DTOs.Resposta;
+using AdoteUmCao.Aplicacao.Servicos;
 
 namespace AdoteUmCao.WebApi.Autorizacao
 {
@@ -21,20 +23,36 @@ namespace AdoteUmCao.WebApi.Autorizacao
         {
             string token = actionContext.Request.Headers.Authorization != null ? actionContext.Request.Headers.Authorization.ToString() : "";
 
+            UsuarioResposta retorno = new UsuarioResposta();
+
             if (!string.IsNullOrEmpty(token))
             {
                 //TODO: Verificar se esse token é valido, caso não seja retornar erro.
+                using (LoginServico LoginServico = new LoginServico())
+                {
+                    retorno = LoginServico.VerificarLogin(token);
 
-                return true;
+                    if (!retorno.Sucesso)
+                    {
+                        retorno.Autorizado = false;
+                        retorno.RetornoUrl = actionContext.Request.RequestUri.AbsolutePath;
+                    }
+
+                    actionContext.Request.Properties.Add("usuario", retorno);
+                }
             }
             else
             {
-                return true;
+                retorno.Sucesso = false;
+                retorno.Mensagens = new List<string>();
+                retorno.Mensagens.Add("Usuário não encontrado.");
+                retorno.Autorizado = false;
+                retorno.RetornoUrl = actionContext.Request.RequestUri.AbsolutePath;
 
-                //HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
-                //message.Content = new StringContent("Você não está autorizado a fazer isso!");
-                //throw new HttpResponseException(message);
+                actionContext.Request.Properties.Add("usuario", retorno);
             }
+
+            return true;
         }
     }
 }

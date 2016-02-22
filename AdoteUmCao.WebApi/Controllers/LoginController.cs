@@ -13,7 +13,7 @@ using AdoteUmCao.Aplicacao.DTOs.Requisicao;
 namespace AdoteUmCao.WebApi.Controllers
 {
     [RoutePrefix("api/login")]
-    public class LoginController : ApiController
+    public class LoginController : BaseController
     {
         [HttpPost]
         [Route("entrarViaFacebook")]
@@ -24,6 +24,22 @@ namespace AdoteUmCao.WebApi.Controllers
             using (LoginServico LoginServico = new LoginServico())
             {
                 retorno = LoginServico.EntrarViaFacebook(login);
+            }
+
+            return retorno;
+        }
+
+        [HttpGet]
+        [Route("verificarLogin")]
+        public UsuarioResposta VerificarLogin()
+        {
+            string token = Request.Headers.Authorization != null ? Request.Headers.Authorization.ToString() : "";
+
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            using (LoginServico LoginServico = new LoginServico())
+            {
+                retorno = LoginServico.VerificarLogin(token);
             }
 
             return retorno;

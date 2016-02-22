@@ -106,6 +106,40 @@ namespace AdoteUmCao.Aplicacao.Servicos
             return retorno;
         }
 
+        public UsuarioResposta VerificarLogin(string token)
+        {
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            #region validar
+
+            if (string.IsNullOrEmpty(token))
+            {
+                this.resposta.Mensagens.Add("Usuário não encontrado.");
+            }
+
+            #endregion
+
+            if (this.resposta.Sucesso)
+            {
+                Usuario entidade = new Usuario();
+
+                entidade = UsuarioRepositorio.GetSingle(u => u.Token == token);
+
+                if (entidade != null)
+                {
+                    retorno.Usuario = new UsuarioDTO(entidade);
+                }
+                else
+                {
+                    this.resposta.Mensagens.Add("Usuário não encontrado.");
+                }
+            }
+
+            retorno.Mensagens = this.resposta.Mensagens;
+            retorno.Sucesso = this.resposta.Sucesso;
+
+            return retorno;
+        }
 
         private string GerarToken(string nome, string dataRegistro)
         {

@@ -13,6 +13,10 @@ namespace AdoteUmCao.Aplicacao.DTOs.Resposta
         /// </summary>
         public List<string> Mensagens { get; set; }
 
+        public bool Autorizado { get; set; }
+
+        public string RetornoUrl { get; set; }
+
         /// <summary>
         /// Informa se a operação foi realizada com sucesso
         /// </summary>

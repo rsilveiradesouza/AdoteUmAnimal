@@ -1,4 +1,4 @@
-﻿angular.module('app').service('Ocorrencia', ['$http', '$q', 'Util', function ($http, $q, Util) {
+﻿angular.module('app').service('Ocorrencia', ['$http', '$q', 'Util', '$location', function ($http, $q, Util, $location) {
     'use strict'
 
     return {
@@ -8,6 +8,10 @@
     function obterOcorrencias(areaMapa) {
         var defer = $q.defer();
 
+        var token = localStorage.getItem("usuarioToken");
+
+        $http.defaults.headers.common['Authorization'] = token;
+
         $http.get(Util.obterUrlBase() + '/api/home/obterOcorrencias?swLat=' + areaMapa.swLat + '&swLng=' + areaMapa.swLng + '&neLat=' + areaMapa.neLat + '&neLng=' + areaMapa.neLng)
        .success(function (data) {
            if (data != null) {
@@ -15,7 +19,12 @@
                    defer.resolve(data);
                }
                else {
-                   defer.reject(data.Mensagens);
+                   if (!data.Autorizado) {
+                       $location.path('/login?retornoUrl=' + data.RetornoUrl);
+                   }
+                   else {
+                       defer.reject(data.Mensagens);
+                   }
                }
            }
            else {

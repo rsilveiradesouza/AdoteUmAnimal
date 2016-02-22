@@ -30,10 +30,6 @@
     }
 
     function obterInformacoesUsuarioFacebook(retorno) {
-        FB.api('/me/permissions', function (informacoes) {
-            console.log("Informações de permissões Facebook", informacoes);
-        });
-
         FB.api('/me?fields=id,email,first_name,last_name', function (informacoes) {
             console.log("Informações Login Facebook", informacoes);
 
@@ -46,12 +42,19 @@
 
             Login.entrarViaFacebook(loginFacebook).then(function (data) {
                 var usuario = data.Usuario;
+                localStorage.setItem("usuarioToken", usuario.Token);
+
+                $rootScope.usuario = usuario;
+
                 console.log("Usuario Logado: ", usuario);
+
+                $location.path("/");
 
                 Util.esconderLoading();
             })
             .catch(function (erros) {
                 Util.mostrarErro(erros);
+
                 console.log(erros);
 
                 Util.esconderLoading();

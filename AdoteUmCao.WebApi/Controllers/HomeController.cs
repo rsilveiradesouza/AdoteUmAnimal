@@ -11,20 +11,32 @@ using AdoteUmCao.WebApi.Autorizacao;
 namespace AdoteUmCao.WebApi.Controllers
 {
     [RoutePrefix("api/home")]
-    public class HomeController : ApiController
+    public class HomeController : BaseController
     {
         [HttpGet]
         [Route("obterOcorrencias")]
         [Auth]
         public OcorrenciasResposta ObterOcorrencias(double swLat, double swLng, double neLat, double neLng)
         {
-            using (OcorrenciaServico OcorrenciaServico = new OcorrenciaServico())
-            {
-                OcorrenciasResposta retorno = new OcorrenciasResposta();
-                retorno = OcorrenciaServico.ObterOcorrenciasMapa(swLat, swLng, neLat, neLng);
+            UsuarioResposta usuario = this.ObterUsuarioAuth();
+            OcorrenciasResposta retorno = new OcorrenciasResposta();
 
-                return retorno;
+            if (!usuario.Sucesso)
+            {
+                retorno.Sucesso = usuario.Sucesso;
+                retorno.RetornoUrl = usuario.RetornoUrl;
+                retorno.Mensagens = usuario.Mensagens;
+                retorno.Autorizado = usuario.Autorizado;
             }
+            else
+            {
+                using (OcorrenciaServico OcorrenciaServico = new OcorrenciaServico())
+                {
+                    retorno = OcorrenciaServico.ObterOcorrenciasMapa(swLat, swLng, neLat, neLng);
+                }
+            }
+
+            return retorno;
         }
     }
 }

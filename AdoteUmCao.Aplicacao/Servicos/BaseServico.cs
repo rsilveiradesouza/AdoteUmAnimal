@@ -23,6 +23,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
             this.resposta = new BaseResposta();
             this.resposta.Mensagens = new List<string>();
             this.resposta.Sucesso = true;
+            this.resposta.Autorizado = true;
         }
 
         public void Dispose(bool disposing)
