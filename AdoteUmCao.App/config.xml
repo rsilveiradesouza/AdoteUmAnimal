@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.AdoteUmCao" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.AdoteUmCao" android-versionCode="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
   <name>AdoteUmCao</name>
   <description>Um projeto para ajudar pessoas que querem doar seus cachorros e pessoas que querem adotar cães.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">DogStyle Team</author>
@@ -10,6 +10,9 @@
   <preference name="windows-phone-target-version" value="8.1" />
   <preference name="Orientation" value="portrait" />
   <preference name="Fullscreen" value="true" />
+  <preference name="android-minSdkVersion" value="5" />
+  <preference name="android-targetSdkVersion" value="5" />
+  <preference name="android-maxSdkVersion" value="5" />
   <vs:plugin name="org.apache.cordova.camera" version="0.3.2" />
   <vs:plugin name="org.apache.cordova.device" version="0.2.12" />
   <vs:plugin name="org.apache.cordova.geolocation" version="0.3.10" />

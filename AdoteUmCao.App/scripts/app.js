@@ -17,40 +17,40 @@
         .otherwise({ redirectTo: '/home' });
     })
     .controller('mainCtrl', function ($rootScope, $q, $scope, $location, Util, Login) {
-        $rootScope.$on('$locationChangeStart', function (event) {
-            if ($rootScope.usuario == null) {
-                if ($location.$$path.indexOf("login") == -1) {
-                    Login.verificarLogin().then(function (data) {
-                        var usuario = data.Usuario;
-                        localStorage.setItem("usuarioToken", usuario.Token);
+        //$rootScope.$on('$locationChangeStart', function (event) {
+        //    if ($rootScope.usuario == null) {
+        //        if ($location.$$path.indexOf("login") == -1) {
+        //            Login.verificarLogin().then(function (data) {
+        //                var usuario = data.Usuario;
+        //                localStorage.setItem("usuarioToken", usuario.Token);
 
-                        $rootScope.usuario = usuario;
+        //                $rootScope.usuario = usuario;
 
-                        if (usuario.Celular == "") {
-                            if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
-                                $location.path("/cadastro/redesocial");
-                                event.preventDefault();
-                            }
-                        }
-                    }).catch(function (data) {
-                        Util.mostrarErro(data);
-                        $location.path("/login");
+        //                if (usuario.Celular == "") {
+        //                    if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
+        //                        $location.path("/cadastro/redesocial");
+        //                        event.preventDefault();
+        //                    }
+        //                }
+        //            }).catch(function (data) {
+        //                Util.mostrarErro(data);
+        //                $location.path("/login");
 
-                        event.preventDefault();
-                    });
+        //                event.preventDefault();
+        //            });
 
-                    return;
-                }
-            }
-            else {
-                if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
-                    if ($rootScope.usuario.Celular == "") {
-                        $location.path("/cadastro/redesocial");
-                        event.preventDefault();
-                    }
-                }
-            }
-        });
+        //            return;
+        //        }
+        //    }
+        //    else {
+        //        if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
+        //            if ($rootScope.usuario.Celular == "") {
+        //                $location.path("/cadastro/redesocial");
+        //                event.preventDefault();
+        //            }
+        //        }
+        //    }
+        //});
     })
     .factory('timeoutHttpIntercept', function ($rootScope, $q) {
         return {
