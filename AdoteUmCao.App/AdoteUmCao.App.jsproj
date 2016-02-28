@@ -177,6 +177,7 @@
     <Content Include="img\osso.svg" />
     <Content Include="img\pata.png" />
     <Content Include="index.html" />
+    <Content Include="modulos\login\loginNormal.html" />
     <Content Include="modulos\login\login.ctrl.js" />
     <Content Include="modulos\login\login.html" />
     <Content Include="modulos\mapa\mapa.ctrl.js" />
