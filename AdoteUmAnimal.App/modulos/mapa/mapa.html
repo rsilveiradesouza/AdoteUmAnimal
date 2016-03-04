@@ -1,0 +1,23 @@
+﻿<div ng-init="iniciar()" ng-cloak>
+    <div class="z-depth-1 valign-wrapper bordered center-align white-text" style="height: 61px; width: 100%; border-top: 1px solid #d0d0d0; background-color: #3c9cdd;">
+        <div class="row valign-wrapper" style="width: 100%; margin-bottom: 0;">
+            <div class="col s3 valign">
+                <a class="" href="#/compartilhar"><img style="width: 32px; height: 32px;" src="img/compartilhar.svg" /></a>
+            </div>
+
+            <div class="col s6 ">
+                <span class="valign bold">Mapa</span>
+            </div>
+
+            <div class="col s3 valign">
+                <a class="" href="#/home"><img style="width: 32px; height: 32px;" src="img/home.svg" /></a>
+            </div>
+        </div>
+    </div>
+
+    <ng-map zoom="14" center="current-location" disable-default-u-i="true" style="height: calc(100% - 61px);">
+        <custom-control id="home" position="BOTTOM_RIGHT" index="1" on-click="minhaPosicao()">
+            <div class="z-depth-1 center-align" style="background-color: white;border-radius: 25px; padding: 12px; color:#fff;cursor:pointer; margin: 15px;"><img style="width: 24px; height: 24px;" src="img/gps.svg" /></div>
+        </custom-control>
+    </ng-map>
+</div>
