@@ -14,6 +14,10 @@
             controller: 'loginCtrl',
             templateUrl: 'modulos/login/login.html'
         })
+        .when('/loginNormal', {
+            controller: 'loginCtrl',
+            templateUrl: 'modulos/login/loginNormal.html'
+        })
         .when('/mapa', {
             controller: 'mapaCtrl',
             templateUrl: 'modulos/mapa/mapa.html'

@@ -7,6 +7,24 @@
         Util.esconderLoading();
     }
 
+    // LOGIN NORMAL
+
+    $scope.loginNormal = function () {
+        Util.mostrarLoading();
+        Login.loginNormal($scope.username, $scope.password, function (resposta) {
+            if (resposta.success) {
+                $location.path('/home');
+            } else {
+                $scope.error = resposta.message;
+                Util.esconderLoading();
+            }
+        });
+    };
+
+
+
+    // LOGIN FACEBOOK
+
     $scope.verificarLogin = function () {
         Util.mostrarLoading();
 
