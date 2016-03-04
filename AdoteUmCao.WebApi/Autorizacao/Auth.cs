@@ -21,37 +21,42 @@ namespace AdoteUmCao.WebApi.Autorizacao
 
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
-            string token = actionContext.Request.Headers.Authorization != null ? actionContext.Request.Headers.Authorization.ToString() : "";
+            bool Desenvolvimento = false;
 
-            UsuarioResposta retorno = new UsuarioResposta();
-            actionContext.Request.Properties.Add("usuario", retorno);
+            if (!Desenvolvimento)
+            {
+                string token = actionContext.Request.Headers.Authorization != null ? actionContext.Request.Headers.Authorization.ToString() : "";
 
-            //if (!string.IsNullOrEmpty(token))
-            //{
-            //    //TODO: Verificar se esse token é valido, caso não seja retornar erro.
-            //    using (LoginServico LoginServico = new LoginServico())
-            //    {
-            //        retorno = LoginServico.VerificarLogin(token);
+                UsuarioResposta retorno = new UsuarioResposta();
+                actionContext.Request.Properties.Add("usuario", retorno);
 
-            //        if (!retorno.Sucesso)
-            //        {
-            //            retorno.Autorizado = false;
-            //            retorno.RetornoUrl = actionContext.Request.RequestUri.AbsolutePath;
-            //        }
+                if (!string.IsNullOrEmpty(token))
+                {
+                    //TODO: Verificar se esse token é valido, caso não seja retornar erro.
+                    using (LoginServico LoginServico = new LoginServico())
+                    {
+                        retorno = LoginServico.VerificarLogin(token);
 
-            //        actionContext.Request.Properties.Add("usuario", retorno);
-            //    }
-            //}
-            //else
-            //{
-            //    retorno.Sucesso = false;
-            //    retorno.Mensagens = new List<string>();
-            //    retorno.Mensagens.Add("Usuário não encontrado.");
-            //    retorno.Autorizado = false;
-            //    retorno.RetornoUrl = actionContext.Request.RequestUri.AbsolutePath;
+                        if (!retorno.Sucesso)
+                        {
+                            retorno.Autorizado = false;
+                            retorno.RetornoUrl = actionContext.Request.RequestUri.AbsolutePath;
+                        }
 
-            //    actionContext.Request.Properties.Add("usuario", retorno);
-            //}
+                        actionContext.Request.Properties.Add("usuario", retorno);
+                    }
+                }
+                else
+                {
+                    retorno.Sucesso = false;
+                    retorno.Mensagens = new List<string>();
+                    retorno.Mensagens.Add("Usuário não encontrado.");
+                    retorno.Autorizado = false;
+                    retorno.RetornoUrl = actionContext.Request.RequestUri.AbsolutePath;
+
+                    actionContext.Request.Properties.Add("usuario", retorno);
+                }
+            }
 
             return true;
         }

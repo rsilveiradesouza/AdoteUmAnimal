@@ -1,6 +1,10 @@
-﻿angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLocale', 'ngMap'])
-    .config(function ($routeProvider, $httpProvider) {
+﻿angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLocale', 'ngMap', 'ngCordova', 'ngCordovaOauth'])
+    .config(function ($routeProvider, $httpProvider, $cordovaFacebookProvider) {
         $httpProvider.interceptors.push('timeoutHttpIntercept');
+
+        var appID = 1573833419609766;
+        var version = "v2.0"; // or leave blank and default is v2.0
+        $cordovaFacebookProvider.browserInit(appID, version);
 
         $routeProvider.when('/home', {
             controller: 'homeCtrl',
@@ -15,42 +19,47 @@
             templateUrl: 'modulos/mapa/mapa.html'
         })
         .otherwise({ redirectTo: '/home' });
+
     })
     .controller('mainCtrl', function ($rootScope, $q, $scope, $location, Util, Login) {
-        //$rootScope.$on('$locationChangeStart', function (event) {
-        //    if ($rootScope.usuario == null) {
-        //        if ($location.$$path.indexOf("login") == -1) {
-        //            Login.verificarLogin().then(function (data) {
-        //                var usuario = data.Usuario;
-        //                localStorage.setItem("usuarioToken", usuario.Token);
+        $rootScope.Desenvolvimento = false;
 
-        //                $rootScope.usuario = usuario;
+        if (!$rootScope.Desenvolvimento) {
+            $rootScope.$on('$locationChangeStart', function (event) {
+                if ($rootScope.usuario == null) {
+                    if ($location.$$path.indexOf("login") == -1) {
+                        Login.verificarLogin().then(function (data) {
+                            var usuario = data.Usuario;
+                            localStorage.setItem("usuarioToken", usuario.Token);
 
-        //                if (usuario.Celular == "") {
-        //                    if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
-        //                        $location.path("/cadastro/redesocial");
-        //                        event.preventDefault();
-        //                    }
-        //                }
-        //            }).catch(function (data) {
-        //                Util.mostrarErro(data);
-        //                $location.path("/login");
+                            $rootScope.usuario = usuario;
 
-        //                event.preventDefault();
-        //            });
+                            if (usuario.Celular == "") {
+                                if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
+                                    $location.path("/cadastro/redesocial");
+                                    event.preventDefault();
+                                }
+                            }
+                        }).catch(function (data) {
+                            Util.mostrarErro(data);
+                            $location.path("/login");
 
-        //            return;
-        //        }
-        //    }
-        //    else {
-        //        if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
-        //            if ($rootScope.usuario.Celular == "") {
-        //                $location.path("/cadastro/redesocial");
-        //                event.preventDefault();
-        //            }
-        //        }
-        //    }
-        //});
+                            event.preventDefault();
+                        });
+
+                        return;
+                    }
+                }
+                else {
+                    if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
+                        if ($rootScope.usuario.Celular == "") {
+                            $location.path("/cadastro/redesocial");
+                            event.preventDefault();
+                        }
+                    }
+                }
+            });
+        }
     })
     .factory('timeoutHttpIntercept', function ($rootScope, $q) {
         return {

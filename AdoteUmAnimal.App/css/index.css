@@ -1,0 +1,131 @@
+﻿body {
+}
+
+#fullscreen_panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1004;
+    background-color: black;
+    opacity: 0.5;
+    display: none;
+}
+
+.nav-bar {
+    margin-bottom: 15px;
+}
+
+.gmnoprint {
+    display: none !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#div_wait {
+    z-index: 1005;
+    border-radius: 10px;
+    margin: auto;
+    width: 200px;
+    margin-left: -100px;
+    height: 150px;
+    margin-top: -110px;
+    text-align: center;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    position: fixed;
+    padding-top: 25px;
+    display: none;
+}
+
+    #div_wait p {
+        margin-top: 10px;
+    }
+
+.btn-auth, .btn-auth:visited {
+    position: relative;
+    display: inline-block;
+    height: 22px;
+    padding: 0 1em;
+    border: 1px solid #999;
+    border-radius: 2px;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 22px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #222;
+    background: #fff;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+}
+
+.btn-facebook.large:before {
+    background-position: 0 -22px;
+}
+
+.btn-facebook:before {
+    border-right: 1px solid #465f94;
+    margin: 0 1em 0 -1em;
+    background-position: 0 0;
+}
+
+.btn-auth.large:before {
+    width: 36px;
+    height: 36px;
+}
+
+.btn-auth.large {
+    height: 36px;
+    line-height: 36px;
+    font-size: 20px;
+}
+
+.btn-auth:before {
+    content: "";
+    float: left;
+    width: 22px;
+    height: 22px;
+    background: url('/img/auth-icons.png') no-repeat 99px 99px;
+}
+
+.btn-auth:hover, .btn-auth:focus, .btn-auth:active {
+    color: #222;
+    text-decoration: none;
+}
+
+.btn-facebook:hover, .btn-facebook:focus {
+    color: #fff;
+    background-color: #3b5998;
+}
+
+.btn-facebook, .btn-facebook:visited {
+    border-color: #29447e;
+    border-bottom-color: #1a356e;
+    color: #fff;
+    background-color: #5872a7;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#637bad), to(#5872a7));
+    background-image: -webkit-linear-gradient(#637bad, #5872a7);
+    background-image: -moz-linear-gradient(#637bad, #5872a7);
+    background-image: -ms-linear-gradient(#637bad, #5872a7);
+    background-image: -o-linear-gradient(#637bad, #5872a7);
+    background-image: linear-gradient(#637bad, #5872a7);
+    -webkit-box-shadow: inset 0 1px 0 #879ac0;
+    box-shadow: inset 0 1px 0 #879ac0;
+}
+
+.pointer {
+    cursor: pointer;
+}

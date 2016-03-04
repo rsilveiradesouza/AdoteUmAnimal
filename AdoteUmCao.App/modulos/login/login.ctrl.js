@@ -1,8 +1,9 @@
-﻿angular.module('app').controller('loginCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Login', '$timeout', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout) {
+﻿angular.module('app').controller('loginCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Login', '$timeout', '$cordovaFacebook', '$http', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $cordovaFacebook, $http) {
     'use strict'
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
+
         Util.esconderLoading();
     }
 
@@ -11,7 +12,34 @@
 
         FB.login(function (retorno) {
             loginCallback(retorno);
-        }, { scope: 'public_profile, email' });
+        }, { scope: 'public_profile, email', redirect_uri: "http://localhost/callback" });
+
+        //$cordovaOauth.facebook("1573833419609766", ["email", "public_profile"], { redirect_uri: "http://localhost/callback" }).then(function (result) {
+        //    displayData($http, result.access_token);
+        //}, function (error) {
+        //    Util.esconderLoading();
+        //    alert("Error: " + error);
+        //});
+
+        $cordovaFacebook.login(["public_profile", "email", "user_friends"])
+    .then(function (success) {
+        console.log(success);
+        loginCallback(success);
+    }, function (error) {
+    });
+    }
+
+    function displayData($http, access_token) {
+        $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: access_token, fields: "name,gender,location,picture", format: "json" } }).then(function (result) {
+            var name = result.data.name;
+            var gender = result.data.gender;
+            var picture = result.data.picture;
+            Util.esconderLoading();
+            console.log(result);
+        }, function (error) {
+            Util.esconderLoading();
+            alert("Error: " + error);
+        });
     }
 
     function loginCallback(retorno) {
@@ -30,7 +58,7 @@
     }
 
     function obterInformacoesUsuarioFacebook(retorno) {
-        FB.api('/me?fields=id,email,first_name,last_name', function (informacoes) {
+        FB.api('/me?fields=id,email,first_name,last_name,picture', function (informacoes) {
             console.log("Informações Login Facebook", informacoes);
 
             var loginFacebook = {};
