@@ -86,14 +86,14 @@ namespace AdoteUmCao.Aplicacao.DTOs
                                 uap.Animal.TipoAnimal.Raca.Id = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Id;
                                 uap.Animal.TipoAnimal.Raca.Nome = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Nome;
 
-                                if (usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo != null)
-                                {
-                                    uap.Animal.TipoAnimal.Raca.Tipo = new TipoDTO();
-                                    uap.Animal.TipoAnimal.Raca.Tipo.Ativo = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.Ativo;
-                                    uap.Animal.TipoAnimal.Raca.Tipo.FotoUrl = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.FotoUrl;
-                                    uap.Animal.TipoAnimal.Raca.Tipo.Id = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.Id;
-                                    uap.Animal.TipoAnimal.Raca.Tipo.Nome = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.Nome;
-                                }
+                                //if (usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo != null)
+                                //{
+                                //    uap.Animal.TipoAnimal.Raca.Tipo = new TipoDTO();
+                                //    uap.Animal.TipoAnimal.Raca.Tipo.Ativo = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.Ativo;
+                                //    uap.Animal.TipoAnimal.Raca.Tipo.FotoUrl = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.FotoUrl;
+                                //    uap.Animal.TipoAnimal.Raca.Tipo.Id = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.Id;
+                                //    uap.Animal.TipoAnimal.Raca.Tipo.Nome = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Raca.Tipo.Nome;
+                                //}
                             }
                         }
                     }

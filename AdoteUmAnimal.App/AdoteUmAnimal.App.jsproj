@@ -111,6 +111,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="logoutcallback.html" />
+    <Content Include="modulos\login\finalizaCadastro.html" />
+    <Content Include="modulos\login\finalizarCadastro.ctrl.js" />
     <Content Include="modulos\login\loginNormal.html" />
     <Content Include="oauthcallback.html" />
     <Content Include="plugins\cordova-plugin-inappbrowser\CONTRIBUTING.md" />
@@ -191,7 +193,6 @@
     <Content Include="scripts\servicos\loginServico.js" />
     <Content Include="scripts\servicos\ocorrenciaServico.js" />
     <Content Include="scripts\servicos\utilServico.js" />
-    <Folder Include="images\" />
     <Content Include="css\font\material-design-icons\LICENSE.txt" />
     <Content Include="css\font\material-design-icons\Material-Design-Icons.eot" />
     <Content Include="css\font\material-design-icons\Material-Design-Icons.svg" />

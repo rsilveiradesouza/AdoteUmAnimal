@@ -1,4 +1,4 @@
-﻿angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLocale', 'ngMap'])
+angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLocale', 'ngMap'])
     .run(function () {
         openFB.init({ appId: '1573833419609766' });
     })
@@ -13,18 +13,12 @@
             controller: 'loginCtrl',
             templateUrl: 'modulos/login/login.html'
         })
-             .when('/oauthcallback', {
-                 controller: 'loginCtrl',
-                 templateUrl: 'oauthcallback.html'
-             })
         .when('/mapa', {
             controller: 'mapaCtrl',
             templateUrl: 'modulos/mapa/mapa.html'
         })
         .otherwise({ redirectTo: '/home' });
-
     })
-
     .controller('mainCtrl', function ($rootScope, $q, $scope, $location, Util, Login) {
         $rootScope.Desenvolvimento = false;
 
@@ -68,7 +62,7 @@
     .factory('timeoutHttpIntercept', function ($rootScope, $q) {
         return {
             'request': function (config) {
-                config.timeout = 10000;
+                config.timeout = 30000;
                 return config;
             }
         };

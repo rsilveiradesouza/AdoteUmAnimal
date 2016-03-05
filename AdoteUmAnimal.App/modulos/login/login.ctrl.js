@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http) {
+angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http) {
     'use strict'
 
     $scope.iniciar = function () {
@@ -67,7 +67,12 @@
 
                 console.log("Usuario Logado: ", usuario);
 
-                $location.path("/");
+                if (usuario.Celular == null) {
+                    $location.path("/login/finalizarCadastro");
+                }
+                else {
+                    $location.path("/");
+                }
 
                 Util.esconderLoading();
             })

@@ -48,7 +48,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                 Usuario entidade = new Usuario();
 
                 //verificar se já existe algum usuario com esse usuarioId do facebook
-                entidade = UsuarioRepositorio.GetSingle(u => u.UsuarioFacebookId == login.UsuarioId, "UsuarioAnimaisPreferencias");
+                entidade = UsuarioRepositorio.GetSingle(u => u.UsuarioFacebookId == login.UsuarioId, "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
 
                 if (entidade == null)
                 {
