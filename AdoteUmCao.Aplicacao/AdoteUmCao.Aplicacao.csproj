@@ -52,6 +52,7 @@
     <Compile Include="DTOs\OcorrenciaDTO.cs" />
     <Compile Include="DTOs\RacaDTO.cs" />
     <Compile Include="DTOs\Requisicao\BaseRequisicao.cs" />
+    <Compile Include="DTOs\Requisicao\FinalizarCadastroFacebookRequisicao.cs" />
     <Compile Include="DTOs\Requisicao\LoginFacebookRequisicao.cs" />
     <Compile Include="DTOs\Resposta\UsuarioResposta.cs" />
     <Compile Include="DTOs\Resposta\OcorrenciasResposta.cs" />

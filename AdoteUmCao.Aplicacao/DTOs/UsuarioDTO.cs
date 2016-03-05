@@ -18,6 +18,7 @@ namespace AdoteUmCao.Aplicacao.DTOs
         {
             this.Id = usuario.Id;
             this.Nome = usuario.Nome;
+            this.Senha = usuario.Senha;
             this.Sobrenome = usuario.Sobrenome;
             this.DataRegistro = usuario.DataRegistro;
             this.Token = usuario.Token;
@@ -65,6 +66,7 @@ namespace AdoteUmCao.Aplicacao.DTOs
 
                         if (usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal != null)
                         {
+                            uap.Animal.TipoAnimal = new TipoAnimalDTO();
                             uap.Animal.TipoAnimal.Id = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.Id;
                             uap.Animal.TipoAnimal.TipoId = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.TipoId;
                             uap.Animal.TipoAnimal.RacaId = usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.RacaId.HasValue ? (int)usuario.UsuarioAnimaisPreferencias[i].Animal.TipoAnimal.RacaId : 0;
@@ -106,6 +108,7 @@ namespace AdoteUmCao.Aplicacao.DTOs
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
+        public string Senha { get; set; }
         public DateTime DataRegistro { get; set; }
         public string Token { get; set; }
         public string TokenEmail { get; set; }

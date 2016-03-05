@@ -55,7 +55,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                     if (!string.IsNullOrEmpty(login.Email))
                     {
                         //verificar se já existe algum usuario com esse email que veio do facebook
-                        entidade = UsuarioRepositorio.GetSingle(u => u.Email.ToUpper().Trim() == login.Email.ToUpper().Trim(), "UsuarioAnimaisPreferencias");
+                        entidade = UsuarioRepositorio.GetSingle(u => u.Email.ToUpper().Trim() == login.Email.ToUpper().Trim(), "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
                     }
 
                     if (entidade == null)
@@ -91,12 +91,81 @@ namespace AdoteUmCao.Aplicacao.Servicos
                 }
                 else
                 {
+                    entidade.UsuarioAnimaisPreferencias = null;
                     //caso já exista usuario na base com esse token do facebook, só é necessário atualizar o token dele
                     entidade.Token = GerarToken(entidade.Nome, entidade.DataRegistro.ToShortTimeString());
                     entidade.TokenFacebook = login.Token;
 
                     UsuarioRepositorio.Update(entidade);
                     retorno.Usuario = new UsuarioDTO(entidade);
+                }
+            }
+
+            retorno.Mensagens = this.resposta.Mensagens;
+            retorno.Sucesso = this.resposta.Sucesso;
+
+            return retorno;
+        }
+
+        public UsuarioResposta FinalizarCadastro(FinalizarCadastroFacebookRequisicao usuario)
+        {
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            //validar se o objeto login esta preenchido
+
+            #region validar
+
+            if (usuario == null)
+            {
+                this.resposta.Mensagens.Add("Dados de usuário não encontrado, tente novamente.");
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(usuario.Senha))
+                {
+                    this.resposta.Mensagens.Add("Senha não encontrada, tente novamente.");
+                }
+
+                if (string.IsNullOrEmpty(usuario.Token))
+                {
+                    this.resposta.Mensagens.Add("Usuario não encontrado, tente novamente.");
+                }
+
+                if (string.IsNullOrEmpty(usuario.Email))
+                {
+                    this.resposta.Mensagens.Add("Email não encontrado, tente novamente.");
+                }
+
+                if (usuario.Senha.Length < 6)
+                {
+                    this.resposta.Mensagens.Add("Senha não pode ser menor que 6 caracteres");
+                }
+
+                if (string.IsNullOrEmpty(usuario.Celular))
+                {
+                    this.resposta.Mensagens.Add("Celular não encontrado, tente novamente.");
+                }
+            }
+
+            #endregion
+
+            if (this.resposta.Sucesso)
+            {
+                Usuario entidade = new Usuario();
+                entidade = UsuarioRepositorio.GetSingle(u => u.Token.ToUpper().Trim() == usuario.Token.ToUpper().Trim(), "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
+
+                if (entidade != null)
+                {
+                    entidade.Celular = usuario.Celular;
+                    entidade.Senha = GerarSenha(usuario.Senha);
+                    entidade.Email = usuario.Email;
+
+                    UsuarioRepositorio.Update(entidade);
+                    retorno.Usuario = new UsuarioDTO(entidade);
+                }
+                else
+                {
+                    this.resposta.Mensagens.Add("Usuário não encontrado, faço o login novamente.");
                 }
             }
 
@@ -123,7 +192,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
             {
                 Usuario entidade = new Usuario();
 
-                entidade = UsuarioRepositorio.GetSingle(u => u.Token == token, "UsuarioAnimaisPreferencias");
+                entidade = UsuarioRepositorio.GetSingle(u => u.Token == token, "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
 
                 if (entidade != null)
                 {
@@ -139,6 +208,17 @@ namespace AdoteUmCao.Aplicacao.Servicos
             retorno.Sucesso = this.resposta.Sucesso;
 
             return retorno;
+        }
+
+        private string GerarSenha(string senha)
+        {
+            var data = Encoding.ASCII.GetBytes(senha);
+            var hashData = new SHA1Managed().ComputeHash(data);
+            var hash = string.Empty;
+            foreach (var b in hashData)
+                hash += b.ToString("X2");
+
+            return hash;
         }
 
         private string GerarToken(string nome, string dataRegistro)

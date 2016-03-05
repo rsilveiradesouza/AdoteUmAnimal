@@ -17,7 +17,7 @@ namespace AdoteUmCao.WebApi.Controllers
     public class LoginController : ApiController
     {
         [HttpPost]
-        [Route("entrarViaFacebook")]
+        [Route("entrarViaFacebook", Name = "entrarViaFacebook")]
         public UsuarioResposta EntrarViaFacebook(LoginFacebookRequisicao login)
         {
             UsuarioResposta retorno = new UsuarioResposta();
@@ -25,6 +25,21 @@ namespace AdoteUmCao.WebApi.Controllers
             using (LoginServico LoginServico = new LoginServico())
             {
                 retorno = LoginServico.EntrarViaFacebook(login);
+            }
+
+            return retorno;
+        }
+
+        [HttpPut]
+        [Route("finalizarCadastro", Name="finalizarCadastro")]
+        public UsuarioResposta FinalizarCadastro(FinalizarCadastroFacebookRequisicao usuario)
+        {
+            usuario.Token = Request.Headers.Authorization != null ? Request.Headers.Authorization.ToString() : "";
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            using (LoginServico LoginServico = new LoginServico())
+            {
+                retorno = LoginServico.FinalizarCadastro(usuario);
             }
 
             return retorno;

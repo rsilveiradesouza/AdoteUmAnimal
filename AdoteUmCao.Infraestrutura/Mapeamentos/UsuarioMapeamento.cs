@@ -17,6 +17,7 @@ namespace AdoteUmCao.Infraestrutura.Mapeamentos
             HasKey(e => e.Id);
             Property(e => e.Id).HasColumnName("Id").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(e => e.Nome).HasColumnName("Nome");
+            Property(e => e.Senha).HasColumnName("Senha");
             Property(e => e.Sobrenome).HasColumnName("Sobrenome");
             Property(e => e.Telefone).HasColumnName("Telefone");
             Property(e => e.Celular).HasColumnName("Celular");

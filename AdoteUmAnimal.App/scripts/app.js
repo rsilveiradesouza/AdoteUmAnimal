@@ -36,9 +36,10 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
 
                             $rootScope.usuario = usuario;
 
-                            if (usuario.Celular == "") {
-                                if ($location.$$path.indexOf("/cadastro/redesocial") == -1) {
-                                    $location.path("/cadastro/redesocial");
+                            if (usuario.Celular == null) {
+                                if ($location.$$path.indexOf("/login/finalizarCadastro") == -1) {
+                                    $location.path("/login/finalizarCadastro");
+                                    console.log("finalizar");
                                     event.preventDefault();
                                 }
                             }
