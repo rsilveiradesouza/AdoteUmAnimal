@@ -1,6 +1,10 @@
 ﻿body {
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 #fullscreen_panel {
     position: fixed;
     top: 0;

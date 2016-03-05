@@ -13,6 +13,10 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
             controller: 'loginCtrl',
             templateUrl: 'modulos/login/login.html'
         })
+        .when('/login/finalizarCadastro', {
+            controller: 'finalizarCadastroCtrl',
+            templateUrl: 'modulos/login/finalizarCadastro.html'
+        })
         .when('/mapa', {
             controller: 'mapaCtrl',
             templateUrl: 'modulos/mapa/mapa.html'

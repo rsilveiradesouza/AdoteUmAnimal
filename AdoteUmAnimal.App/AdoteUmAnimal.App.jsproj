@@ -111,7 +111,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="logoutcallback.html" />
-    <Content Include="modulos\login\finalizaCadastro.html" />
+    <Content Include="modulos\login\finalizarCadastro.html" />
     <Content Include="modulos\login\finalizarCadastro.ctrl.js" />
     <Content Include="modulos\login\loginNormal.html" />
     <Content Include="oauthcallback.html" />

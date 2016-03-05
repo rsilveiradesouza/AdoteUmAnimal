@@ -4,8 +4,37 @@
     return {
         entrarViaFacebook: entrarViaFacebook,
         verificarLogin: verificarLogin,
-        loginNormal: loginNormal
+        loginNormal: loginNormal,
+        salvarFinalizacaoCadastro: salvarFinalizacaoCadastro
     }
+
+    function salvarFinalizacaoCadastro(usuario) {
+        var defer = $q.defer();
+
+        $http.put(Util.obterUrlBase() + '/api/login/finalizarCadastro', usuario)
+       .success(function (data) {
+           if (data != null) {
+               if (data.Sucesso) {
+                   defer.resolve(data);
+               }
+               else {
+                   defer.reject(data.Mensagens);
+               }
+           }
+           else {
+               defer.reject(['Erro tentar finalizar cadastro.']);
+           }
+       })
+       .error(function (data) {
+           if (data == null) {
+               data = "Algo deu errado! Tente novamente.";
+           }
+
+           defer.reject([data]);
+       });
+        return defer.promise;
+    }
+     
 
     function loginNormal(username, password, callback) {
         /* Apenas teste */
