@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('mapaCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Ocorrencia', 'NgMap', '$timeout', function ($scope, $rootScope, $routeParams, Util, $location, Ocorrencia, NgMap, $timeout) {
+angular.module('app').controller('mapaCtrl', ['$scope', '$rootScope', '$routeParams', 'Util', '$location', 'Ocorrencia', 'NgMap', '$timeout', function ($scope, $rootScope, $routeParams, Util, $location, Ocorrencia, NgMap, $timeout) {
     'use strict'
     var marcacao = [];
 

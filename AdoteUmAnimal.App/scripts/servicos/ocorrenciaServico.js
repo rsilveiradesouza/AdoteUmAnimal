@@ -1,4 +1,4 @@
-﻿angular.module('app').service('Ocorrencia', ['$http', '$q', 'Util', '$location', function ($http, $q, Util, $location) {
+angular.module('app').service('Ocorrencia', ['$http', '$q', 'Util', '$location', function ($http, $q, Util, $location) {
     'use strict'
 
     return {
@@ -20,7 +20,7 @@
                }
                else {
                    if (!data.Autorizado) {
-                       $location.path('/login?retornoUrl=' + data.RetornoUrl);
+                       $location.path('/login');
                    }
                    else {
                        defer.reject(data.Mensagens);

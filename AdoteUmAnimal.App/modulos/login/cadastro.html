@@ -3,7 +3,20 @@
         <div class="row">
             <form class="col s12">
                 <div class="col s12 font-40">
-                    Finalizar Cadastro
+                    Cadastro
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="nome" type="text" ng-model="usuario.Nome" class="validate">
+                        <label for="nome">Nome</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="sobrenome" type="text" ng-model="usuario.Sobrenome" class="validate">
+                        <label for="sobrenome">Sobrenome</label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -23,7 +36,7 @@
                         <label for="celular">Celular</label>
                     </div>
                 </div>
-                <div class="row" ng-hide="usuario.Email != null">
+                <div class="row">
                     <div class="input-field col s12">
                         <input id="email" type="email" ng-model="usuario.Email" class="validate">
                         <label for="email">Email</label>
@@ -31,7 +44,7 @@
                 </div>
                 <div style="margin-top:60px;">
                     <a class="btn waves-effect waves-light pointer" ng-click="salvar()">
-                        Finalizar Cadastro
+                        Cadastrar-se
                         <i class="material-icons right">perm_identity</i>
                     </a>
                 </div>

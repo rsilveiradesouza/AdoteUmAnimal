@@ -107,6 +107,83 @@ namespace AdoteUmCao.Aplicacao.Servicos
             return retorno;
         }
 
+        public UsuarioResposta CadastrarUsuario(CadastroUsuarioRequisicao usuario)
+        {
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            //validar se o objeto login esta preenchido
+
+            #region validar
+
+            if (usuario == null)
+            {
+                this.resposta.Mensagens.Add("Dados de usuário não encontrado, tente novamente.");
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(usuario.Senha))
+                {
+                    this.resposta.Mensagens.Add("Senha não encontrada, tente novamente.");
+                }
+
+                if (string.IsNullOrEmpty(usuario.Nome))
+                {
+                    this.resposta.Mensagens.Add("Nome não encontrado, tente novamente.");
+                }
+
+                if (string.IsNullOrEmpty(usuario.Sobrenome))
+                {
+                    this.resposta.Mensagens.Add("Sobrenome não encontrado, tente novamente.");
+                }
+
+                if (usuario.Senha.Length < 6)
+                {
+                    this.resposta.Mensagens.Add("Senha não pode ser menor que 6 caracteres");
+                }
+
+                if (string.IsNullOrEmpty(usuario.Celular))
+                {
+                    this.resposta.Mensagens.Add("Celular não encontrado, tente novamente.");
+                }
+            }
+
+            #endregion
+
+            if (this.resposta.Sucesso)
+            {
+                Usuario entidade = new Usuario();
+
+                entidade = UsuarioRepositorio.GetSingle(u => u.Email.ToUpper().Trim() == usuario.Email.ToUpper().Trim(), "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
+
+                if (entidade != null)
+                {
+                    this.resposta.Mensagens.Add("Usuário já cadastrado, selecione outro email.");
+
+                }
+                else
+                {
+                    entidade = new Usuario();
+
+                    entidade.Celular = usuario.Celular;
+                    entidade.Senha = GerarSenha(usuario.Senha);
+                    entidade.Email = usuario.Email;
+                    entidade.Nome = usuario.Nome;
+                    entidade.Sobrenome = usuario.Sobrenome;
+                    entidade.DataRegistro = DateTime.Now;
+                    entidade.Ativo = true;
+                    entidade.Token = GerarToken(entidade.Nome, entidade.DataRegistro.ToShortTimeString());
+
+                    UsuarioRepositorio.Add(entidade);
+                    retorno.Usuario = new UsuarioDTO(entidade);
+                }
+            }
+
+            retorno.Mensagens = this.resposta.Mensagens;
+            retorno.Sucesso = this.resposta.Sucesso;
+
+            return retorno;
+        }
+
         public UsuarioResposta FinalizarCadastro(FinalizarCadastroFacebookRequisicao usuario)
         {
             UsuarioResposta retorno = new UsuarioResposta();
@@ -159,6 +236,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                     entidade.Celular = usuario.Celular;
                     entidade.Senha = GerarSenha(usuario.Senha);
                     entidade.Email = usuario.Email;
+                    entidade.UsuarioAnimaisPreferencias = null;
 
                     UsuarioRepositorio.Update(entidade);
                     retorno.Usuario = new UsuarioDTO(entidade);
@@ -197,6 +275,56 @@ namespace AdoteUmCao.Aplicacao.Servicos
                 if (entidade != null)
                 {
                     retorno.Usuario = new UsuarioDTO(entidade);
+                }
+                else
+                {
+                    this.resposta.Mensagens.Add("Usuário não encontrado.");
+                }
+            }
+
+            retorno.Mensagens = this.resposta.Mensagens;
+            retorno.Sucesso = this.resposta.Sucesso;
+
+            return retorno;
+        }
+
+        public UsuarioResposta Logar(string usuario, string senha)
+        {
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            #region validar
+
+            if (string.IsNullOrEmpty(usuario))
+            {
+                this.resposta.Mensagens.Add("Usuário não digitado.");
+            }
+
+            if (string.IsNullOrEmpty(senha))
+            {
+                this.resposta.Mensagens.Add("Senha não digitada.");
+            }
+
+            #endregion
+
+            if (this.resposta.Sucesso)
+            {
+                Usuario entidade = new Usuario();
+
+                entidade = UsuarioRepositorio.GetSingle(u => u.Email == usuario, "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
+
+                if (entidade != null)
+                {
+                    if (entidade.Senha == GerarSenha(senha))
+                    {
+                        entidade.Token = GerarToken(entidade.Nome, entidade.DataRegistro.ToShortTimeString());
+
+                        UsuarioRepositorio.Add(entidade);
+                        retorno.Usuario = new UsuarioDTO(entidade);
+                    }
+                    else
+                    {
+                        this.resposta.Mensagens.Add("Senha incorreta.");
+                    }
                 }
                 else
                 {

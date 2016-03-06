@@ -22,13 +22,11 @@ namespace AdoteUmCao.WebApi.Autorizacao
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
             bool Desenvolvimento = false;
+            UsuarioResposta retorno = new UsuarioResposta();
 
             if (!Desenvolvimento)
             {
                 string token = actionContext.Request.Headers.Authorization != null ? actionContext.Request.Headers.Authorization.ToString() : "";
-
-                UsuarioResposta retorno = new UsuarioResposta();
-                actionContext.Request.Properties.Add("usuario", retorno);
 
                 if (!string.IsNullOrEmpty(token))
                 {
@@ -56,6 +54,10 @@ namespace AdoteUmCao.WebApi.Autorizacao
 
                     actionContext.Request.Properties.Add("usuario", retorno);
                 }
+            }
+            else
+            {
+                actionContext.Request.Properties.Add("usuario", retorno);
             }
 
             return true;

@@ -1,7 +1,7 @@
-﻿body {
+body {
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
@@ -16,6 +16,39 @@
     opacity: 0.5;
     display: none;
 }
+
+.font-10 {
+    font-size: 9px;
+}
+
+.font-10 {
+    font-size: 10px;
+}
+
+.font-11 {
+    font-size: 11px;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.font-13 {
+    font-size: 13px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.font-15 {
+    font-size: 15px !important;
+}
+
+.font-40 {
+    font-size: 40px;
+}
+
 
 .nav-bar {
     margin-bottom: 15px;

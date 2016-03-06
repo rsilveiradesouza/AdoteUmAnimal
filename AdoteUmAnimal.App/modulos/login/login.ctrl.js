@@ -4,19 +4,31 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     $scope.iniciar = function () {
         Util.mostrarLoading();
 
+        $scope.usuario = {};
 
         Util.esconderLoading();
     }
 
-    $scope.loginNormal = function () {
+    $scope.logar = function () {
         Util.mostrarLoading();
-        Login.loginNormal($scope.username, $scope.password, function (resposta) {
-            if (resposta.success) {
-                $location.path('/home');
-            } else {
-                $scope.error = resposta.message;
-                Util.esconderLoading();
-            }
+
+        Login.logar($scope.usuario.Email, $scope.usuario.Senha).then(function (data) {
+            var usuario = data.Usuario;
+            localStorage.setItem("usuarioToken", usuario.Token);
+
+            $rootScope.usuario = usuario;
+
+            console.log("Usuario Logado: ", usuario);
+
+            $location.path("/");
+
+            Util.esconderLoading();
+        }).catch(function (erros) {
+            Util.mostrarErro(erros);
+
+            console.log(erros);
+
+            Util.esconderLoading();
         });
     };
 
@@ -56,8 +68,6 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
             loginFacebook.Nome = informacoes.first_name;
             loginFacebook.Sobrenome = informacoes.last_name;
             loginFacebook.Email = informacoes.email;
-
-            alert(loginFacebook.Nome);
 
             Login.entrarViaFacebook(loginFacebook).then(function (data) {
                 var usuario = data.Usuario;

@@ -1,4 +1,4 @@
-﻿<html ng-app="app">
+<html ng-app="app">
 <head>
     <title>Adote um Animal</title>
 
@@ -78,7 +78,19 @@
     </div>
 
     <div id="wrapper">
-        <header id="header"></header>
+        <header id="header">
+            <nav ng-hide="verificarTelaLogin()">
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo font-15">Adote um animal</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a href="#/">Home</a></li>
+                        <li><a href="#/mapa">Mapa</a></li>
+                        <li><a href="" ng-click="deslogar()">Sair</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
         <main style="width: 100%; height: 100%;">
             <div ng-view="" style="width: 100%; height: 100%;">
@@ -94,6 +106,7 @@
     <script src="modulos/mapa/mapa.ctrl.js"></script>
     <script src="modulos/login/login.ctrl.js"></script>
     <script src="modulos/login/finalizarCadastro.ctrl.js"></script>
+    <script src="modulos/login/cadastro.ctrl.js"></script>
     <!-- fim controles -->
     <!-- servicos -->
     <script src="scripts/servicos/ocorrenciaServico.js"></script>

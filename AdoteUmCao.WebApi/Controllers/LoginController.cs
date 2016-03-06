@@ -30,8 +30,8 @@ namespace AdoteUmCao.WebApi.Controllers
             return retorno;
         }
 
-        [HttpPut]
-        [Route("finalizarCadastro", Name="finalizarCadastro")]
+        [HttpPost]
+        [Route("finalizarCadastro")]
         public UsuarioResposta FinalizarCadastro(FinalizarCadastroFacebookRequisicao usuario)
         {
             usuario.Token = Request.Headers.Authorization != null ? Request.Headers.Authorization.ToString() : "";
@@ -40,6 +40,21 @@ namespace AdoteUmCao.WebApi.Controllers
             using (LoginServico LoginServico = new LoginServico())
             {
                 retorno = LoginServico.FinalizarCadastro(usuario);
+            }
+
+            return retorno;
+        }
+
+
+        [HttpPost]
+        [Route("cadastrarUsuario")]
+        public UsuarioResposta CadastrarUsuario(CadastroUsuarioRequisicao usuario)
+        {
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            using (LoginServico LoginServico = new LoginServico())
+            {
+                retorno = LoginServico.CadastrarUsuario(usuario);
             }
 
             return retorno;
@@ -56,6 +71,21 @@ namespace AdoteUmCao.WebApi.Controllers
             using (LoginServico LoginServico = new LoginServico())
             {
                 retorno = LoginServico.VerificarLogin(token);
+            }
+
+            return retorno;
+        }
+
+
+        [HttpGet]
+        [Route("logar")]
+        public UsuarioResposta Logar(string usuario, string senha)
+        {
+            UsuarioResposta retorno = new UsuarioResposta();
+
+            using (LoginServico LoginServico = new LoginServico())
+            {
+                retorno = LoginServico.Logar(usuario, senha);
             }
 
             return retorno;

@@ -1,16 +1,12 @@
-angular.module('app').controller('finalizarCadastroCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http) {
+angular.module('app').controller('cadastroCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http) {
     'use strict'
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
+
         $scope.msgErros = [];
-        $scope.usuario = $rootScope.usuario;
 
-        if ($scope.usuario == null) {
-            $location.path("/login");
-        }
-
-        $scope.usuario.Senha = null;
+        $scope.usuario = {};
 
         Util.esconderLoading();
     }
@@ -19,9 +15,15 @@ angular.module('app').controller('finalizarCadastroCtrl', function ($scope, $roo
         Util.mostrarLoading();
 
         if ($scope.validarPreenchimento() && $scope.validarTamanhoSenha() & $scope.compararSenhas() & $scope.validarEmail()) {
-            Login.salvarFinalizacaoCadastro($scope.usuario).then(function (data) {
+            Login.cadastrarUsuario($scope.usuario).then(function (data) {
                 Util.esconderLoading();
-                $rootScope.usuario = data.Usuario;
+                var usuario = data.Usuario;
+
+                localStorage.setItem("usuarioToken", usuario.Token);
+
+                $rootScope.usuario = usuario;
+
+                console.log("Usuario Logado: ", usuario);
 
                 $location.path("/");
             }).catch(function (erros) {
@@ -90,7 +92,10 @@ angular.module('app').controller('finalizarCadastroCtrl', function ($scope, $roo
     $scope.validarPreenchimento = function () {
         if ((null != $scope.usuario.Celular && $scope.usuario.Celular != "")
         && (null != $scope.usuario.Senha && $scope.usuario.Senha != "")
-        && (null != $scope.usuario.ConfirmaSenha && $scope.usuario.ConfirmaSenha != "")) {
+        && (null != $scope.usuario.ConfirmaSenha && $scope.usuario.ConfirmaSenha != "")
+        && ($scope.usuario.Nome != null && $scope.usuario.Nome != "")
+        && ($scope.usuario.Sobrenome != null && $scope.usuario.Sobrenome != "")
+        && ($scope.usuario.Email != null && $scope.usuario.Email != "")) {
             return true;
         } else {
             $scope.msgErros.push("Preencha todos os campos.");
