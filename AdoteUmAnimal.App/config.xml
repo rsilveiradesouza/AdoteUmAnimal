@@ -14,7 +14,7 @@
     <param name="APP_ID" value="1573833419609766" />
     <param name="APP_NAME" value="oauthlogin-aua" />
   </vs:plugin>
-  <gap:plugin name="phonegap-facebook-plugin" version="0.12.0">
+  <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.12.0">
     <param name="APP_ID" value="1573833419609766" />
     <param name="APP_NAME" value="oauthlogin-aua" />
   </gap:plugin>
