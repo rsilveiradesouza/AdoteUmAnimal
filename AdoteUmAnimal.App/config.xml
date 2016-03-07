@@ -11,6 +11,8 @@
   <vs:plugin name="cordova-plugin-inappbrowser" version="1.3.0">
   </vs:plugin>
   <vs:plugin name="phonegap-facebook-plugin" version="0.12.0">
+    <param name="APP_ID" value="1573833419609766" />
+    <param name="APP_NAME" value="oauthlogin-aua" />
   </vs:plugin>
   <vs:platformSpecificValues />
 </widget>
