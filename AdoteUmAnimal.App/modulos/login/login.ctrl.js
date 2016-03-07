@@ -4,7 +4,12 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     $scope.iniciar = function () {
         Util.mostrarLoading();
 
+        $scope.msgErros = [];
         $scope.usuario = {};
+
+        if (window.cordova.platformId == "browser") {
+            facebookConnectPlugin.browserInit("1573833419609766", "v2.5");
+        }
 
         Util.esconderLoading();
     }
@@ -12,34 +17,51 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     $scope.logar = function () {
         Util.mostrarLoading();
 
-        Login.logar($scope.usuario.Email, $scope.usuario.Senha).then(function (data) {
-            var usuario = data.Usuario;
-            localStorage.setItem("usuarioToken", usuario.Token);
+        if ($scope.validarPreenchimento()) {
+            Login.logar($scope.usuario.Email, $scope.usuario.Senha).then(function (data) {
+                var usuario = data.Usuario;
+                localStorage.setItem("usuarioToken", usuario.Token);
 
-            $rootScope.usuario = usuario;
+                $rootScope.usuario = usuario;
 
-            console.log("Usuario Logado: ", usuario);
+                console.log("Usuario Logado: ", usuario);
 
-            $location.path("/");
+                $location.path("/");
 
+                Util.esconderLoading();
+            }).catch(function (erros) {
+                Util.mostrarErro(erros);
+
+                console.log(erros);
+
+                Util.esconderLoading();
+            });
+        }
+        else {
+            Util.mostrarErro($scope.msgErros);
+            $scope.msgErros = [];
             Util.esconderLoading();
-        }).catch(function (erros) {
-            Util.mostrarErro(erros);
-
-            console.log(erros);
-
-            Util.esconderLoading();
-        });
+        }
     };
 
+    $scope.validarPreenchimento = function () {
+        if ((null != $scope.usuario.Email && $scope.usuario.Email != "")
+        && (null != $scope.usuario.Senha && $scope.usuario.Senha != "")) {
+            return true;
+        } else {
+            $scope.msgErros.push("Preencha todos os campos.");
+
+            return false;
+        }
+    }
+
     $scope.verificarLogin = function () {
-        Util.mostrarLoading();
+        facebookConnectPlugin.login(['email', 'public_profile'], loginCallback, fbLoginError);
+    }
 
-        openFB.login(loginCallback, { scope: 'email,public_profile' });
-
-        //FB.login(function (retorno) {
-        //    loginCallback(retorno);
-        //}, { scope: 'public_profile, email', redirect_uri: "https://www.facebook.com/connect/login_success.html" });
+    function fbLoginError(retorno) {
+        console.log('fbLoginError', retorno);
+        Util.esconderLoading();
     }
 
     function loginCallback(retorno) {
@@ -58,8 +80,7 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     }
 
     function obterInformacoesUsuarioFacebook(retorno) {
-        //FB.api('/me?fields=id,email,first_name,last_name,picture', function (informacoes) {
-        openFB.info(function (informacoes) {
+        facebookConnectPlugin.api('/me?fields=id,email,first_name,last_name,picture', ["email","public_profile"], function (informacoes) {
             console.log("Informações Login Facebook", informacoes);
 
             var loginFacebook = {};

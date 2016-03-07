@@ -76,7 +76,6 @@ namespace AdoteUmCao.WebApi.Controllers
             return retorno;
         }
 
-
         [HttpGet]
         [Route("logar")]
         public UsuarioResposta Logar(string usuario, string senha)
