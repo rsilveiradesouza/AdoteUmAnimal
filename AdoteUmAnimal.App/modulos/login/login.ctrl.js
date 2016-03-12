@@ -7,7 +7,7 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
         $scope.msgErros = [];
         $scope.usuario = {};
 
-        if (window.cordova.platformId == "browser") {
+        if (window.cordova && window.cordova.platformId == "browser") {
             facebookConnectPlugin.browserInit("1573833419609766", "v2.5");
         }
 

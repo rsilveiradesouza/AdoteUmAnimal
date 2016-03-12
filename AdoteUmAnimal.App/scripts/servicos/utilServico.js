@@ -22,7 +22,7 @@ angular.module('app').service('Util', ['$http', function ($http) {
 
     function obterUrlBase() {
         //return 'http://localhost:65303';
-        return 'http://192.168.1.194:9998';
+        return 'http://192.168.0.13:9998';
     }
 
     function obterArrayPaginas(paginaAtual, totalPaginas) {
