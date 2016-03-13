@@ -1,0 +1,57 @@
+﻿<div ng-init="iniciar()" style="width: 100%; height: 100%" ng-cloak>
+    <div class="card-panel white z-depth-1" style="padding: 15px; margin-top: 30px;">
+        <a href="#!">
+            <div class="row valign-wrapper" style="margin-bottom: 0;">
+                <div class="col s3">
+                    <img src="{{usuarioAtual.FotoUrl}}" alt="" class="circle">
+                </div>
+                <div class="col s7">
+                    <span class="title black-text">{{usuarioAtual.Nome}}</span>
+                </div>
+                <div class="col s2">
+                    <i class="material-icons teal-text">send</i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="card-panel white z-depth-1" style="padding: 15px; margin-top: 30px;">
+        <a href="#!">
+            <div class="row valign-wrapper" style="margin-bottom: 0;">
+                <div class="col s2">
+                    <i class="material-icons circle yellow darken-2 white-text" style="padding: 5px;">view_list</i>
+                </div>
+                <div class="col s9">
+                    <span class="black-text">
+                        Preferências de adoção
+                    </span>
+                </div>
+                <div class="col s2">
+                    <i class="material-icons teal-text">send</i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="card-panel white z-depth-1" style="padding: 15px;">
+        <a href="#!">
+            <div class="row valign-wrapper" style="margin-bottom: 0;">
+                <div class="col s2">
+                    <i class="material-icons circle teal white-text" style="padding: 5px;">insert_chart</i>
+                </div>
+                <div class="col s9">
+                    <span class="black-text">
+                        Estatísticas
+                    </span>
+                </div>
+                <div class="col s2">
+                    <i class="material-icons teal-text">send</i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="grey-text center font-11" style="bottom: 10px; position: absolute; left: 0; right: 0;">
+        Versão {{versaoApp}} © Copyright 2016 - DogStyle Team
+    </div>
+</div>

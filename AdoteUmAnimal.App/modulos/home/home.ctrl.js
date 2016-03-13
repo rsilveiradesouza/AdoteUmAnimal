@@ -3,26 +3,18 @@
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
+        $rootScope.tituloApp = Util.obterAppNome();
 
-        $scope.obterFeed();
-
-        Util.esconderLoading();
-        $scope.MensagemHome = "Teste";
-
-        /*Cao.obterCaes().then(function (data) {
-            $scope.caes = data.Caes;
-            console.log($scope.caes);
-
-            Util.esconderLoading();
-        }).catch(function (erros) {
-            Util.mostrarErro(erros);
-            console.log(erros);
-
-            Util.esconderLoading();
-        });*/
+        $scope.$watch(function () {
+            return $rootScope.usuario;
+        }, function () {
+            if ($rootScope.usuario != null) {
+                obterFeed();
+            }
+        }, true);
     }
 
-    $scope.obterFeed = function () {
-       
+    function obterFeed() {
+        Util.esconderLoading();
     }
 }]);

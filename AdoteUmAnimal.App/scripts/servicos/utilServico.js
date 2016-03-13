@@ -7,7 +7,17 @@ angular.module('app').service('Util', ['$http', function ($http) {
         mostrarSucesso: mostrarSucesso,
         obterUrlBase: obterUrlBase,
         mostrarLoading: mostrarLoading,
-        esconderLoading: esconderLoading
+        esconderLoading: esconderLoading,
+        obterAppNome: obterAppNome,
+        obterVersaoApp: obterVersaoApp
+    }
+
+    function obterVersaoApp() {
+        return "1.0.0.1";
+    }
+
+    function obterAppNome() {
+        return "Adote um Animal";
     }
 
     function mostrarLoading() {

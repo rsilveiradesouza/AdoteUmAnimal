@@ -21,6 +21,10 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
             controller: 'cadastroCtrl',
             templateUrl: 'modulos/login/cadastro.html'
         })
+        .when('/perfil', {
+            controller: 'perfilCtrl',
+            templateUrl: 'modulos/usuario/perfil.html'
+        })
         .when('/mapa', {
             controller: 'mapaCtrl',
             templateUrl: 'modulos/mapa/mapa.html'
@@ -28,6 +32,9 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
         .otherwise({ redirectTo: '/home' });
     })
     .controller('mainCtrl', function ($rootScope, $q, $scope, $location, Util, Login) {
+        $rootScope.tituloApp = Util.obterAppNome();
+        $rootScope.versaoApp = Util.obterVersaoApp();
+
         $rootScope.Desenvolvimento = false;
         $(".button-collapse").sideNav({ closeOnClick: true });
 
@@ -55,6 +62,8 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
                             Login.verificarLogin().then(function (data) {
                                 var usuario = data.Usuario;
                                 localStorage.setItem("usuarioToken", usuario.Token);
+
+                                usuario.FotoUrl = Util.obterUrlBase() + '/imagens/perfil/' + usuario.Id + '/perfil.jpg';
 
                                 $rootScope.usuario = usuario;
 

@@ -4,7 +4,6 @@ angular.module('app').service('Login', ['$http', '$q', 'Util', function ($http, 
     return {
         entrarViaFacebook: entrarViaFacebook,
         verificarLogin: verificarLogin,
-        loginNormal: loginNormal,
         salvarFinalizacaoCadastro: salvarFinalizacaoCadastro,
         cadastrarUsuario: cadastrarUsuario,
         logar: logar
@@ -69,32 +68,6 @@ angular.module('app').service('Login', ['$http', '$q', 'Util', function ($http, 
 
         return defer.promise;
     }
-
-    function loginNormal(username, password, callback) {
-        /* Apenas teste */
-        $timeout(function () {
-            var resposta = { success: username === 'teste' && password === 'teste' };
-            if (resposta != null) {
-                if (!resposta.success) {
-                    resposta.message = 'Usuario e senha incorretos';
-                }
-            }
-            callback(resposta);
-        }, 1000);
-
-        /** $http.post('/api/login/entrar', { username: username, password: password })
-           .success(function (resposta) {
-               if (resposta != null) {
-                   callback(resposta);
-               }
-           })
-           .error(function (resposta) {
-                  if (resposta == null) {
-                      resposta = "Algo deu errado! Tente novamente.";
-              }
-              defer.reject([resposta]);
-          }); */
-    };
 
     function entrarViaFacebook(login) {
         var defer = $q.defer();

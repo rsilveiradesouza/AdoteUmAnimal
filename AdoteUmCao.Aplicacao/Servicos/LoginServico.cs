@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +68,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                         entidade.UsuarioFacebookId = login.UsuarioId;
                         entidade.Nome = login.Nome;
                         entidade.Sobrenome = login.Sobrenome;
+                        entidade.FotoUrl = login.FotoUrl;
                         entidade.DataRegistro = DateTime.Now;
                         entidade.Ativo = true;
                         entidade.Token = GerarToken(entidade.Nome, entidade.DataRegistro.ToShortTimeString());
@@ -337,6 +340,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
 
             return retorno;
         }
+        
 
         private string GerarSenha(string senha)
         {

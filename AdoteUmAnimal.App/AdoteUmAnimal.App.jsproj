@@ -127,6 +127,8 @@
     <Content Include="modulos\login\finalizarCadastro.html" />
     <Content Include="modulos\login\finalizarCadastro.ctrl.js" />
     <Content Include="modulos\login\loginNormal.html" />
+    <Content Include="modulos\usuario\perfil.ctrl.js" />
+    <Content Include="modulos\usuario\perfil.html" />
     <Content Include="oauthcallback.html" />
     <Content Include="plugins\cordova-plugin-inappbrowser\CONTRIBUTING.md" />
     <Content Include="plugins\cordova-plugin-inappbrowser\doc\de\index.md" />
@@ -1027,6 +1029,7 @@
     <Content Include="scripts\framework\openfb-angular.js" />
     <Content Include="scripts\login-facebook.js" />
     <Content Include="scripts\servicos\loginServico.js" />
+    <Content Include="scripts\servicos\usuarioServico.js" />
     <Content Include="scripts\servicos\ocorrenciaServico.js" />
     <Content Include="scripts\servicos\utilServico.js" />
     <Content Include="css\font\material-design-icons\LICENSE.txt" />

@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="imagens\perfil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,15 +1,14 @@
-angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http) {
+angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http, $log) {
     'use strict'
+    var retornoFacebook = {};
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
 
+        console.log(window.cordova);
+
         $scope.msgErros = [];
         $scope.usuario = {};
-
-        if (window.cordova && window.cordova.platformId == "browser") {
-            facebookConnectPlugin.browserInit("1573833419609766", "v2.5");
-        }
 
         Util.esconderLoading();
     }
@@ -56,7 +55,12 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     }
 
     $scope.verificarLogin = function () {
-        facebookConnectPlugin.login(['email', 'public_profile'], loginCallback, fbLoginError);
+        if (window.cordova) {
+            facebookConnectPlugin.login(['email', 'public_profile'], loginCallback, fbLoginError);
+        }
+        else {
+            FB.login(loginCallback, { scope: 'email,public_profile' });
+        }
     }
 
     function fbLoginError(retorno) {
@@ -80,40 +84,51 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     }
 
     function obterInformacoesUsuarioFacebook(retorno) {
-        facebookConnectPlugin.api('/me?fields=id,email,first_name,last_name,picture', ["email","public_profile"], function (informacoes) {
-            console.log("Informações Login Facebook", informacoes);
+        retornoFacebook = retorno;
 
-            var loginFacebook = {};
-            loginFacebook.Token = retorno.authResponse.accessToken;
-            loginFacebook.UsuarioId = informacoes.id;
-            loginFacebook.Nome = informacoes.first_name;
-            loginFacebook.Sobrenome = informacoes.last_name;
-            loginFacebook.Email = informacoes.email;
+        if (window.cordova) {
+            facebookConnectPlugin.api('/me?fields=id,email,first_name,last_name,picture', ["email", "public_profile"], enviarInformacoesFacebook);
+        }
+        else {
+            FB.api('/me?fields=id,email,first_name,last_name,picture', enviarInformacoesFacebook);
+        }
+    }
 
-            Login.entrarViaFacebook(loginFacebook).then(function (data) {
-                var usuario = data.Usuario;
-                localStorage.setItem("usuarioToken", usuario.Token);
+    function enviarInformacoesFacebook(informacoes) {
+        console.log("Informações Login Facebook", informacoes);
 
-                $rootScope.usuario = usuario;
+        var loginFacebook = {};
+        loginFacebook.Token = retornoFacebook.authResponse.accessToken;
+        loginFacebook.UsuarioId = informacoes.id;
+        loginFacebook.Nome = informacoes.first_name;
+        loginFacebook.Sobrenome = informacoes.last_name;
+        loginFacebook.Email = informacoes.email;
+        loginFacebook.FotoUrl = informacoes.picture.data.url;
 
-                console.log("Usuario Logado: ", usuario);
+        Login.entrarViaFacebook(loginFacebook).then(function (data) {
+            var usuario = data.Usuario;
+            localStorage.setItem("usuarioToken", usuario.Token);
 
-                if (usuario.Celular == null) {
-                    $location.path("/login/finalizarCadastro");
-                }
-                else {
-                    $location.path("/");
-                }
+            usuario.FotoUrl = Util.obterUrlBase() + '/imagens/perfil/' + usuario.Id + '/perfil.jpg';
+            $rootScope.usuario = usuario;
 
-                Util.esconderLoading();
-            })
-            .catch(function (erros) {
-                Util.mostrarErro(erros);
+            console.log("Usuario Logado: ", usuario);
 
-                console.log(erros);
+            if (usuario.Celular == null) {
+                $location.path("/login/finalizarCadastro");
+            }
+            else {
+                $location.path("/");
+            }
 
-                Util.esconderLoading();
-            });
+            Util.esconderLoading();
+        })
+        .catch(function (erros) {
+            Util.mostrarErro(erros);
+
+            console.log(erros);
+
+            Util.esconderLoading();
         });
     }
 });

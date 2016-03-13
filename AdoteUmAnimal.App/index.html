@@ -76,14 +76,15 @@
         <p><strong>Aguarde...</strong></p>
     </div>
 
-    <div id="wrapper">
+    <div id="wrapper" class="grey lighten-4" style="width: 100%; height: 100%;" ng-cloak>
         <header id="header">
             <nav ng-hide="verificarTelaLogin()">
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo font-15">Adote um animal</a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <a href="#!" class="brand-logo font-15">{{tituloApp}}</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons small">menu</i></a>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="#/">Home</a></li>
+                        <li><a href="#/perfil">Perfil</a></li>
                         <li><a href="#/mapa">Mapa</a></li>
                         <li><a href="" ng-click="deslogar()">Sair</a></li>
                     </ul>
@@ -91,7 +92,7 @@
             </nav>
         </header>
 
-        <main style="width: 100%; height: 100%;">
+        <main style="width: 100%; height: calc(100% - 56px);">
             <div ng-view="" style="width: 100%; height: 100%;">
 
             </div>
@@ -106,11 +107,13 @@
     <script src="modulos/login/login.ctrl.js"></script>
     <script src="modulos/login/finalizarCadastro.ctrl.js"></script>
     <script src="modulos/login/cadastro.ctrl.js"></script>
+    <script src="modulos/usuario/perfil.ctrl.js"></script>
     <!-- fim controles -->
     <!-- servicos -->
     <script src="scripts/servicos/ocorrenciaServico.js"></script>
     <script src="scripts/servicos/loginServico.js"></script>
     <script src="scripts/servicos/utilServico.js"></script>
+    <script src="scripts/servicos/usuarioServico.js"></script>
     <!-- fim servicos -->
 
     <script src="cordova.js"></script>

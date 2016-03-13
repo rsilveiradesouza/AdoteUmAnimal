@@ -4,6 +4,21 @@ angular.module('app').controller('mapaCtrl', ['$scope', '$rootScope', '$routePar
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
+
+        $scope.$watch(function () {
+            return $rootScope.usuario;
+        }, function () {
+            if ($rootScope.usuario != null) {
+                iniciarMapa();
+            }
+        }, true);
+    }
+
+    $scope.minhaPosicao = function () {
+        $scope.map.panTo($scope.meuLocal);
+    }
+
+    function iniciarMapa() {
         limparMarcacao();
 
         var mapInit = $rootScope.$on('mapInitialized', function (evt, map) {
@@ -22,10 +37,6 @@ angular.module('app').controller('mapaCtrl', ['$scope', '$rootScope', '$routePar
 
             mapInit();
         });
-    }
-
-    $scope.minhaPosicao = function () {
-        $scope.map.panTo($scope.meuLocal);
     }
 
     function carregarOcorrencias(mudouLugar) {
