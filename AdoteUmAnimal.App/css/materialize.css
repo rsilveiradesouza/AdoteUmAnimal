@@ -6793,7 +6793,7 @@ nav ul a span.badge {
 }
 
 .row .col.offset-s1 {
-  margin-left: 8.3333333333%;
+  margin-left: 8.3333333333% !important;
 }
 
 .row .col.pull-s1 {
@@ -6805,7 +6805,7 @@ nav ul a span.badge {
 }
 
 .row .col.offset-s2 {
-  margin-left: 16.6666666667%;
+  margin-left: 16.6666666667% !important;
 }
 
 .row .col.pull-s2 {
@@ -6817,7 +6817,7 @@ nav ul a span.badge {
 }
 
 .row .col.offset-s3 {
-  margin-left: 25%;
+  margin-left: 25% !important;
 }
 
 .row .col.pull-s3 {
@@ -6841,7 +6841,7 @@ nav ul a span.badge {
 }
 
 .row .col.offset-s5 {
-  margin-left: 41.6666666667%;
+  margin-left: 41.6666666667% !important;
 }
 
 .row .col.pull-s5 {
@@ -6853,7 +6853,7 @@ nav ul a span.badge {
 }
 
 .row .col.offset-s6 {
-  margin-left: 50%;
+  margin-left: 50% !important;
 }
 
 .row .col.pull-s6 {

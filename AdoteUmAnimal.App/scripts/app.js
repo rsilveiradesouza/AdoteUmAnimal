@@ -57,8 +57,41 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
             return true;
         }
 
+        $scope.irHome = function () {
+            $location.path('/home');
+            $scope.paginaSelecionada = 1;
+        }
+
+        $scope.irBusca = function () {
+            $location.path('/buscar');
+            $scope.paginaSelecionada = 2;
+        }
+
+        $scope.irMapa = function () {
+            $location.path('/mapa');
+            $scope.paginaSelecionada = 3;
+        }
+
+        $scope.irPerfil = function () {
+            $location.path('/perfil');
+            $scope.paginaSelecionada = 4;
+        }
+
         if (!$rootScope.Desenvolvimento) {
             $rootScope.$on('$locationChangeStart', function (event) {
+                if ($location.$$path.indexOf("/home") != -1) {
+                    $scope.paginaSelecionada = 1;
+                }
+                else if ($location.$$path.indexOf("/busca") != -1) {
+                    $scope.paginaSelecionada = 2;
+                }
+                else if ($location.$$path.indexOf("/mapa") != -1) {
+                    $scope.paginaSelecionada = 3;
+                }
+                else if ($location.$$path.indexOf("/perfil") != -1) {
+                    $scope.paginaSelecionada = 4;
+                }
+
                 if ($rootScope.usuario == null) {
                     if ($location.$$path.indexOf("/login") == -1) {
                         console.log("login", $location);

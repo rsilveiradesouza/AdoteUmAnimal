@@ -1,6 +1,6 @@
 <div ng-init="iniciar()" ng-cloak>
-    <div class="row">
-        <ul id="ulItens" ng-show="ocorrencias.length > 0" style="margin: 0;">
+    <div class="row" style="margin-bottom: 0;">
+        <ul id="ulItens" ng-show="ocorrencias.length > 0" style="margin: 0; margin-bottom: 4.1em;">
             <li ng-repeat="animal in ocorrencias">
                 <div>
                     <div class="z-depth-1 waves-effect waves-light lista-series" ng-click="verPerfil(animal)" style="background-image:  linear-gradient( to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2),  transparent, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9) ), url('{{animal.Animal.FotoUrl}}');">

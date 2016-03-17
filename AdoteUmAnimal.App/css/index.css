@@ -24,6 +24,16 @@ nav .button-collapse i {
     src: local('Lobster'), local('Lobster-Regular'), url("../font/font-logo.woff") format('woff');
 }
 
+.fixar-footer {
+    bottom: 0;
+    position: fixed;
+    height: 4rem;
+    border-top: 1px solid #3498db;
+    z-index: 2;
+    width: 100%;
+    background: #fff;
+}
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -97,10 +107,21 @@ nav .button-collapse i {
     font-size: 28px !important;
 }
 
-.font-40 {
-    font-size: 40px;
+.font-30 {
+    font-size: 30px !important;
 }
 
+.font-40 {
+    font-size: 40px !important;
+}
+
+.azul-padrao {
+    background: #3498db !important;
+}
+
+.azul-padrao-text {
+    color: #3498db !important;
+}
 
 .nav-bar {
     margin-bottom: 15px;

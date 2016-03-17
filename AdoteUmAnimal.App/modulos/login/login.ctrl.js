@@ -22,6 +22,8 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
                 var usuario = data.Usuario;
                 localStorage.setItem("usuarioToken", usuario.Token);
 
+                usuario.FotoUrl = Util.obterUrlBase() + '/imagens/perfil/' + usuario.Id + '/perfil.jpg';
+
                 $rootScope.usuario = usuario;
 
                 console.log("Usuario Logado: ", usuario);

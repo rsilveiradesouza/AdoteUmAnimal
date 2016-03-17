@@ -232,7 +232,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
             if (this.resposta.Sucesso)
             {
                 Usuario entidade = new Usuario();
-                entidade = UsuarioRepositorio.GetSingle(u => u.Token.ToUpper().Trim() == usuario.Token.ToUpper().Trim(), "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
+                entidade = UsuarioRepositorio.GetSingle(u => u.Token != null && u.Token.ToUpper().Trim() == usuario.Token.ToUpper().Trim(), "UsuarioAnimaisPreferencias", "UsuarioAnimaisPreferencias.Animal", "UsuarioAnimaisPreferencias.Animal.Cor", "UsuarioAnimaisPreferencias.Animal.TipoAnimal", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Raca", "UsuarioAnimaisPreferencias.Animal.TipoAnimal.Tipo");
 
                 if (entidade != null)
                 {
@@ -321,7 +321,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
                     {
                         entidade.Token = GerarToken(entidade.Nome, entidade.DataRegistro.ToShortTimeString());
 
-                        UsuarioRepositorio.Add(entidade);
+                        UsuarioRepositorio.Update(entidade);
                         retorno.Usuario = new UsuarioDTO(entidade);
                     }
                     else
@@ -340,7 +340,7 @@ namespace AdoteUmCao.Aplicacao.Servicos
 
             return retorno;
         }
-        
+
 
         private string GerarSenha(string senha)
         {
