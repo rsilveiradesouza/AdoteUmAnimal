@@ -23,6 +23,7 @@ namespace AdoteUmCao.Infraestrutura.Mapeamentos
             Property(e => e.DataCadastro).HasColumnName("Data_Cadastro");
             Property(e => e.DataOcorrido).HasColumnName("Data_Ocorrido");
             Property(e => e.Descricao).HasColumnName("Descricao");
+            Property(e => e.Visualizacoes).HasColumnName("Visualizacoes");
             Property(e => e.Ativo).HasColumnName("Ativo");
 
             HasRequired(e => e.Animal).WithMany().HasForeignKey(e => e.AnimalId);

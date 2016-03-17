@@ -5,6 +5,7 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     $scope.iniciar = function () {
         Util.mostrarLoading();
 
+        $rootScope.tamanhoTopo = 0;
         console.log(window.cordova);
 
         $scope.msgErros = [];

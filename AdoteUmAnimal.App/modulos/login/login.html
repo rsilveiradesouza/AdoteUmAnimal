@@ -1,39 +1,38 @@
-<div ng-init="iniciar()" class="valign-wrapper center" style="width: 100%; height: 100%;" ng-cloak>
+<div ng-init="iniciar()" class="valign-wrapper center" style="width: 100%; height: 100%; background: #3498db;" ng-cloak>
     <div class="valign" style="margin: auto;">
         <div class="row">
-            <div class="col s12 font-40">
-                Login
+            <div class="col s12 font-28 white-text" style="font-family: 'Lobster', cursive;">
+               PetHelp
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">perm_identity</i>
-                <input type="email" id="emailUsuario" class="validate" ng-model="usuario.Email" />
-                <label for="emailUsuario">Email</label>
-            </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">lock_outline</i>
-                <input id="password" type="password" ng-model="usuario.Senha" class="validate">
-                <label for="password">Senha</label>
+            <div class="col s12">
+                <input type="email" id="emailUsuario" style="width:calc(100% - 5px); margin: 0; padding-left: 5px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom: 0.5px solid black !important;" class="validate white" placeholder="Usuário" ng-model="usuario.Email" />
+                <input id="password" type="password" style="width:calc(100% - 5px); margin: 0; padding-left: 5px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; border-top: 0.5px solid black !important;" class="validate white" placeholder="Senha" ng-model="usuario.Senha">
             </div>
             <div class="col s12 font-10">
-                Se você ainda não está cadastrado, cadastre-se <a href="#/login/cadastro">clicando aqui</a>
+                Se você ainda não está cadastrado, cadastre-se <a href="#/login/cadastro" class="white-text">clicando aqui</a>.
             </div>
         </div>
 
-        <div class="row">
-            <div class="col s10 offset-s1">
-                <a class="btn waves-effect waves-light pointer col s12" ng-click="logar()">
+        <div class="row" style="margin-bottom: 5px;">
+            <div class="col s12">
+                <a class="btn waves-effect waves-light btn-flat pointer col s12 cyan darken-1 white-text" ng-click="logar()">
                     Logar
                 </a>
             </div>
         </div>
 
-        <div class="col s12">
-            <a class="btn-auth btn-facebook large pointer col s12" ng-click="verificarLogin()">
-                Logar com o <b>Facebook</b>
-            </a>
+        <div class="row">
+            <div class="col s12">
+                <a class="btn waves-effect waves-light btn-flat pointer col s12 white-text" style="background-color: #3B5998; padding-left: 0; padding-right: 0;" ng-click="verificarLogin()">
+                    <img src="../img/login-facebook.png" class="left" style="height:36px;" />
+                    <span>
+                        Logar com o Facebook
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 </div>

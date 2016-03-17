@@ -120,8 +120,12 @@
     <Content Include="css\Material-Design-Icons.ttf" />
     <Content Include="css\Material-Design-Icons.woff" />
     <Content Include="css\Material-Design-Icons.woff2" />
+    <Content Include="font\font-logo.woff" />
     <Content Include="font\material-design-icons\font.woff" />
+    <Content Include="img\login-facebook.png" />
     <Content Include="logoutcallback.html" />
+    <Content Include="modulos\ocorrencia\perfil.ctrl.js" />
+    <Content Include="modulos\ocorrencia\perfil.html" />
     <Content Include="modulos\login\cadastro.html" />
     <Content Include="modulos\login\cadastro.ctrl.js" />
     <Content Include="modulos\login\finalizarCadastro.html" />

@@ -14,7 +14,25 @@
         }, true);
     }
 
+    $scope.verPerfil = function (ocorrencia) {
+        $rootScope.ocorrenciaAtual = ocorrencia;
+
+        $location.path('/ocorrencia/' + ocorrencia.Id);
+    }
+
     function obterFeed() {
-        Util.esconderLoading();
+        Ocorrencia.obterOcorrenciasUltimas().then(function (data) {
+            $scope.ocorrencias = data.Ocorrencias;
+
+            console.log(data);
+
+            Util.esconderLoading();
+        })
+        .catch(function (erros) {
+            Util.mostrarErro(erros);
+            console.log(erros);
+
+            Util.esconderLoading();
+        });
     }
 }]);

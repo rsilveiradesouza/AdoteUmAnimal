@@ -25,6 +25,7 @@ namespace AdoteUmCao.Aplicacao.DTOs
             this.DataCadastro = ocorrencia.DataCadastro;
             this.DataOcorrido = ocorrencia.DataOcorrido;
             this.Ativo = ocorrencia.Ativo;
+            this.Visualizacoes = ocorrencia.Visualizacoes;
 
             if (ocorrencia.TipoOcorrencia != null)
             {
@@ -123,6 +124,7 @@ namespace AdoteUmCao.Aplicacao.DTOs
         public AnimalDTO Animal { get; set; }
         public int UsuarioId { get; set; }
         public UsuarioDTO Usuario { get; set; }
+        public int Visualizacoes { get; set; }
         public int LocalizacaoId { get; set; }
         public LocalizacaoDTO Localizacao { get; set; }
         public string Descricao { get; set; }

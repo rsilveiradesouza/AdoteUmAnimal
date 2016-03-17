@@ -39,6 +39,32 @@ namespace AdoteUmCao.WebApi.Controllers
             return retorno;
         }
 
+        [HttpGet]
+        [Route("obterOcorrenciasUltimas")]
+        [Auth]
+        public OcorrenciasResposta ObterOcorrenciasUltimas()
+        {
+            UsuarioResposta usuario = this.ObterUsuarioAuth();
+            OcorrenciasResposta retorno = new OcorrenciasResposta();
+
+            if (!usuario.Sucesso)
+            {
+                retorno.Sucesso = usuario.Sucesso;
+                retorno.RetornoUrl = usuario.RetornoUrl;
+                retorno.Mensagens = usuario.Mensagens;
+                retorno.Autorizado = usuario.Autorizado;
+            }
+            else
+            {
+                using (OcorrenciaServico OcorrenciaServico = new OcorrenciaServico())
+                {
+                    retorno = OcorrenciaServico.ObterOcorrenciasUltimas();
+                }
+            }
+
+            return retorno;
+        }
+
         public UsuarioResposta ObterUsuarioAuth()
         {
             return (UsuarioResposta)Request.Properties.Where(c => c.Key == "usuario").Select(c => c.Value).FirstOrDefault();

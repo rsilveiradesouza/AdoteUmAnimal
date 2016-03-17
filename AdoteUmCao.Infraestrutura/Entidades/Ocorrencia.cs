@@ -24,6 +24,7 @@ namespace AdoteUmCao.Infraestrutura.Entidades
             this.DataCadastro = ocorrencia.DataCadastro;
             this.DataOcorrido = ocorrencia.DataOcorrido;
             this.Ativo = ocorrencia.Ativo;
+            this.Visualizacoes = ocorrencia.Visualizacoes;
 
             if (ocorrencia.TipoOcorrencia != null)
             {
@@ -191,6 +192,7 @@ namespace AdoteUmCao.Infraestrutura.Entidades
         public virtual Animal Animal { get; set; }
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public int Visualizacoes { get; set; }
         public int LocalizacaoId { get; set; }
         public virtual Localizacao Localizacao { get; set; }
         public string Descricao { get; set; }

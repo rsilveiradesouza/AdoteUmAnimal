@@ -9,6 +9,10 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
             controller: 'homeCtrl',
             templateUrl: 'modulos/home/home.html'
         })
+        $routeProvider.when('/ocorrencia/:id', {
+            controller: 'ocorrenciaPerfilCtrl',
+            templateUrl: 'modulos/ocorrencia/perfil.html'
+        })
         .when('/login', {
             controller: 'loginCtrl',
             templateUrl: 'modulos/login/login.html'
@@ -34,6 +38,7 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
     .controller('mainCtrl', function ($rootScope, $q, $scope, $location, Util, Login) {
         $rootScope.tituloApp = Util.obterAppNome();
         $rootScope.versaoApp = Util.obterVersaoApp();
+        $rootScope.tamanhoTopo = 56;
 
         $rootScope.Desenvolvimento = false;
         $(".button-collapse").sideNav({ closeOnClick: true });
@@ -55,34 +60,42 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'ngCookies', 'ngSanitize', 'ngLoc
         if (!$rootScope.Desenvolvimento) {
             $rootScope.$on('$locationChangeStart', function (event) {
                 if ($rootScope.usuario == null) {
-                    if ($location.$$path.indexOf("login") == -1) {
+                    if ($location.$$path.indexOf("/login") == -1) {
+                        console.log("login", $location);
                         var token = localStorage.getItem("usuarioToken");
 
-                        if (token != null) {
-                            Login.verificarLogin().then(function (data) {
-                                var usuario = data.Usuario;
-                                localStorage.setItem("usuarioToken", usuario.Token);
+                        if (!$rootScope.verificandoLogin) {
+                            if (token != null) {
+                                $rootScope.verificandoLogin = true;
 
-                                usuario.FotoUrl = Util.obterUrlBase() + '/imagens/perfil/' + usuario.Id + '/perfil.jpg';
+                                Login.verificarLogin().then(function (data) {
+                                    $rootScope.verificandoLogin = false;
+                                    var usuario = data.Usuario;
+                                    localStorage.setItem("usuarioToken", usuario.Token);
 
-                                $rootScope.usuario = usuario;
+                                    usuario.FotoUrl = Util.obterUrlBase() + '/imagens/perfil/' + usuario.Id + '/perfil.jpg';
 
-                                if (usuario.Celular == null) {
-                                    if ($location.$$path.indexOf("/login/finalizarCadastro") == -1) {
-                                        $location.path("/login/finalizarCadastro");
-                                        console.log("finalizar");
-                                        event.preventDefault();
+                                    $rootScope.usuario = usuario;
+
+                                    if (usuario.Celular == null) {
+                                        if ($location.$$path.indexOf("/login/finalizarCadastro") == -1) {
+                                            $location.path("/login/finalizarCadastro");
+                                            console.log("finalizar");
+                                            event.preventDefault();
+                                        }
                                     }
-                                }
-                            }).catch(function (data) {
-                                Util.mostrarErro(data);
-                                $location.path("/login");
+                                }).catch(function (data) {
+                                    $rootScope.verificandoLogin = false;
 
-                                event.preventDefault();
-                            });
-                        }
-                        else {
-                            $location.path("/login");
+                                    Util.mostrarErro(data);
+                                    $location.path("/login");
+
+                                    event.preventDefault();
+                                });
+                            }
+                            else {
+                                $location.path("/login");
+                            }
                         }
 
                         return;

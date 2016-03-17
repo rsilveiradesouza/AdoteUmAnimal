@@ -1,27 +1,26 @@
 <div ng-init="iniciar()" ng-cloak>
     <div class="row">
-        <div class="col s12 center-align">
-            <h5>Publicações</h5>
-        </div>
-    </div>
+        <ul id="ulItens" ng-show="ocorrencias.length > 0" style="margin: 0;">
+            <li ng-repeat="animal in ocorrencias">
+                <div>
+                    <div class="z-depth-1 waves-effect waves-light lista-series" ng-click="verPerfil(animal)" style="background-image:  linear-gradient( to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2),  transparent, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9) ), url('{{animal.Animal.FotoUrl}}');">
+                        <span class="title white-text" style="float:left; margin-top: 13px; font-size: 17px; margin-left: 13px;">
+                            {{animal.Nome}}
+                        </span>
+                        <div style="float: left; padding: 15px; width: 100%; margin-top: 125px;">
+                            <div class="" style="margin-left: 13px;">
+                                <span class="btn-floating waves-effect waves-light right-align" style="float:right; margin-top: -7px;background: #3498db;"><i class="material-icons">add</i></span>
+                                <span class="white-text right-align" style="float:left;margin-right: 6px; margin-top: 5px;margin-left: -10px;"><i class="material-icons">visibility</i></span>
+                                <span class="white-text" style="float:left; margin-top: 7px; font-size: 15px; margin-right: 8px;">{{animal.Visualizacoes | number:0}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
-    <table class="bordered striped centered" ng-show="caes.lenght > 0">
-        <thead>
-            <tr>
-                <th>Nome</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="cao in caes" ng-cloak>
-                <td>{{cao.Nome}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="row">
-        <div class="col s12 center-align" ng-hide="caes.lenght > 0">
+        <div class="col s12 center-align" ng-hide="ocorrencias.length > 0">
             Nenhuma feita até o momento :(
         </div>
     </div>
-
 </div>

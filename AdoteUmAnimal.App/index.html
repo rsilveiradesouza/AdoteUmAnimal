@@ -78,9 +78,9 @@
 
     <div id="wrapper" class="grey lighten-4" style="width: 100%; height: 100%;" ng-cloak>
         <header id="header">
-            <nav ng-hide="verificarTelaLogin()">
+            <nav ng-hide="verificarTelaLogin()" style="background: #3498db;">
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo font-15">{{tituloApp}}</a>
+                    <div class="brand-logo font-15">{{tituloApp}}</div>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons small">menu</i></a>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="#/">Home</a></li>
@@ -92,7 +92,7 @@
             </nav>
         </header>
 
-        <main style="width: 100%; height: calc(100% - 56px);">
+        <main style="width: 100%; height: calc(100% - {{tamanhoTopo}}px);">
             <div ng-view="" style="width: 100%; height: 100%;">
 
             </div>
@@ -108,6 +108,7 @@
     <script src="modulos/login/finalizarCadastro.ctrl.js"></script>
     <script src="modulos/login/cadastro.ctrl.js"></script>
     <script src="modulos/usuario/perfil.ctrl.js"></script>
+    <script src="modulos/ocorrencia/perfil.ctrl.js"></script>
     <!-- fim controles -->
     <!-- servicos -->
     <script src="scripts/servicos/ocorrenciaServico.js"></script>
