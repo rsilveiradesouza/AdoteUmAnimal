@@ -20,6 +20,22 @@
         $location.path('/ocorrencia/' + ocorrencia.Id);
     }
 
+    $scope.verificarCor = function (animal) {
+        //46, 204, 113 - verde para doar
+        //230, 126, 34 - laranja para perde
+        //'155, 89, 182 - roxo para encontrou
+
+        if (animal.TipoOcorrencia.Sigla == 'DOR') {
+            return '46, 204, 113';
+        }
+        else if (animal.TipoOcorrencia.Sigla == 'ANPD') {
+            return '230, 126, 34';
+        }
+        else if (animal.TipoOcorrencia.Sigla == 'ANEC') {
+            return '155, 89, 182';
+        }
+    }
+
     function obterFeed() {
         Ocorrencia.obterOcorrenciasUltimas().then(function (data) {
             $scope.ocorrencias = data.Ocorrencias;

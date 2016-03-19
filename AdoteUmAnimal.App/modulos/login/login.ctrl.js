@@ -87,6 +87,8 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
     }
 
     function obterInformacoesUsuarioFacebook(retorno) {
+        Util.mostrarLoading();
+
         retornoFacebook = retorno;
 
         if (window.cordova) {

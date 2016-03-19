@@ -4,6 +4,7 @@
 
     $scope.iniciar = function () {
         Util.mostrarLoading();
+        $rootScope.tituloApp = "Mapa";
 
         $scope.$watch(function () {
             return $rootScope.usuario;
