@@ -1,4 +1,4 @@
-angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http, $log) {
+﻿angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $routeParams, Util, $location, Login, $timeout, $http, $log) {
     'use strict'
     var retornoFacebook = {};
 
@@ -6,7 +6,6 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
         Util.mostrarLoading();
 
         $rootScope.tamanhoTopo = 0;
-        console.log(window.cordova);
 
         $scope.msgErros = [];
         $scope.usuario = {};
@@ -59,9 +58,11 @@ angular.module('app').controller('loginCtrl', function ($scope, $rootScope, $rou
 
     $scope.verificarLogin = function () {
         if (window.cordova) {
+            console.log("Login via APP");
             facebookConnectPlugin.login(['email', 'public_profile'], loginCallback, fbLoginError);
         }
         else {
+            console.log("Login via Browser");
             FB.login(loginCallback, { scope: 'email,public_profile' });
         }
     }

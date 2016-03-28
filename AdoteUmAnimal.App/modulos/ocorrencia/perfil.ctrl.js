@@ -21,19 +21,5 @@
         $scope.ocorrencia = $rootScope.ocorrenciaAtual;
 
         Util.esconderLoading();
-
-        //Ocorrencia.obterOcorrencia(id).then(function (data) {
-        //    $scope.ocorrencias = data.Ocorrencias;
-
-        //    console.log(data);
-
-        //    Util.esconderLoading();
-        //})
-        //.catch(function (erros) {
-        //    Util.mostrarErro(erros);
-        //    console.log(erros);
-
-        //    Util.esconderLoading();
-        //});
     }
 }]);
