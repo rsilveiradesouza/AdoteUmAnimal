@@ -1,0 +1,134 @@
+﻿<html ng-app="app">
+<head>
+    <title>Adote um Animal</title>
+
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/materialize.css" rel="stylesheet" />
+    <link href="scripts/framework/alertify/alertify.core.css" rel="stylesheet" />
+    <link href="scripts/framework/alertify/alertify.default.css" rel="stylesheet" />
+
+    <script src="scripts/framework/jquery-2.1.4.min.js"></script>
+    <script src="scripts/framework/facebook-sdk.js" id="facebook-jssdk"></script>
+    <script src="scripts/login-facebook.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBP3IWXBddpwwzxI0GbAzwjPZnmFmKT1U8"></script>
+    <script src="scripts/framework/materialize.min.js"></script>
+    <script src="scripts/framework/alertify/alertify.min.js"></script>
+    <script src="scripts/framework/angular.min.js"></script>
+    <script src="scripts/framework/angular-animate.min.js"></script>
+    <script src="scripts/framework/angular-cookies.min.js"></script>
+    <script src="scripts/framework/angular-route.min.js"></script>
+    <script src="scripts/framework/angular-sanitize.min.js"></script>
+    <script src="scripts/framework/angular-locale_pt-br.min.js"></script>
+    <script src="scripts/framework/ng-map.min.js"></script>
+    <script src="scripts/framework/openfb-angular.js"></script>
+    <script src="scripts/framework/pubnub-3.14.4.js"></script>
+    <script src="scripts/framework/pubnub-angular-3.1.1.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/index.js"></script>
+</head>
+
+<body ng-controller='mainCtrl'>
+    <div id="fullscreen_panel"></div>
+    <div id="div_wait">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p><strong>Aguarde...</strong></p>
+    </div>
+
+    <div id="wrapper" class="grey lighten-4 main-wrapper" ng-cloak style="margin-top:  {{verificarTela() ? 0 : tamanhoTopo}}px;">
+        <header id="header" style="position: fixed; top: 0; z-index: 2; width: 100%; overflow: hidden;">
+            <nav ng-hide="verificarTela()" style="background: #3498db; height: {{tamanhoTopo}}px;">
+                <div class="nav-wrapper valign-wrapper">
+                    <div class="brand-logo font-15 valign" style="line-height: {{tamanhoTopo}}px; padding-top: {{verificarIOS()}}px;">{{tituloApp}}</div>
+                </div>
+            </nav>
+        </header>
+
+        <main style="-webkit-overflow-scrolling: touch;">
+            <div ng-view="">
+
+            </div>
+        </main>
+
+        <footer id="footer" style="overflow: hidden;" class="fixar-footer" ng-hide="verificarTela()">
+            <div class="row valign-wrapper" style="width: 100%; height: 100%; margin-bottom: 0;">
+                <div class="col s3 offset-s1 valign" style="margin-left: 0">
+                    <i class="material-icons font-30" ng-class="{'azul-padrao-text': paginaSelecionada == 1, 'black-text': paginaSelecionada != 1}" ng-click="irHome()">home</i>
+                </div>
+                <div class="col s3 valign" ng-class="{'azul-padrao-text': paginaSelecionada == 2, 'black-text': paginaSelecionada != 2}" style="margin-left: 0">
+                    <i class="material-icons font-30" ng-click="irBusca()">search</i>
+                </div>
+                <div class="col s3 valign" ng-class="{'azul-padrao-text': paginaSelecionada == 3, 'black-text': paginaSelecionada != 3}" style="margin-left: 0">
+                    <i class="material-icons font-30" ng-click="irMapa()">location_on</i>
+                </div>
+                <div class="col s3 valign" ng-class="{'azul-padrao-text': paginaSelecionada == 4, 'black-text': paginaSelecionada != 4}" style="margin-left: 0">
+                    <i class="material-icons font-30" ng-click="irPerfil()">perm_identity</i>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- controles -->
+    <script src="modulos/home/home.ctrl.js"></script>
+    <script src="modulos/mapa/mapa.ctrl.js"></script>
+    <script src="modulos/login/login.ctrl.js"></script>
+    <script src="modulos/login/finalizarCadastro.ctrl.js"></script>
+    <script src="modulos/login/cadastro.ctrl.js"></script>
+    <script src="modulos/usuario/perfil.ctrl.js"></script>
+    <script src="modulos/ocorrencia/perfil.ctrl.js"></script>
+    <script src="modulos/teste/teste.ctrl.js"></script>
+    <!-- fim controles -->
+    <!-- servicos -->
+    <script src="scripts/servicos/ocorrenciaServico.js"></script>
+    <script src="scripts/servicos/loginServico.js"></script>
+    <script src="scripts/servicos/utilServico.js"></script>
+    <script src="scripts/servicos/usuarioServico.js"></script>
+    <!-- fim servicos -->
+
+    <script src="cordova.js"></script>
+    <script src="push.js"></script>
+</body>
+</html>

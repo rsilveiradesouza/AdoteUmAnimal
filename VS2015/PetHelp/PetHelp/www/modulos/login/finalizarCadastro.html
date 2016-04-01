@@ -1,0 +1,41 @@
+<div ng-init="iniciar()" class="valign-wrapper center" style="width: 100%; height: 100%;" ng-cloak>
+    <div class="valign" style="margin: auto; width: 100%">
+        <div class="row">
+            <form class="col s12">
+                <div class="col s12 font-40">
+                    Finalizar Cadastro
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" ng-model="usuario.Senha" class="validate">
+                        <label for="password">Senha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="confirmPassword" type="password" ng-model="usuario.ConfirmaSenha" class="validate">
+                        <label for="confirmPassword">Confirmar Senha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="celular" type="tel" ng-model="usuario.Celular" class="validate">
+                        <label for="celular">Celular</label>
+                    </div>
+                </div>
+                <div class="row" ng-hide="usuario.Email != null">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" ng-model="usuario.Email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div style="margin-top:60px;">
+                    <a class="btn waves-effect waves-light pointer" ng-click="salvar()">
+                        Finalizar Cadastro
+                        <i class="material-icons right">perm_identity</i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

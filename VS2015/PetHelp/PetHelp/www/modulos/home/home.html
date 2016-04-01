@@ -1,0 +1,36 @@
+<div ng-init="iniciar()" ng-cloak>
+    <div class="row" style="margin-bottom: 0;">
+        <ul id="ulItens" ng-show="ocorrencias.length > 0" style="margin: 0; margin-bottom: 4.1em;">
+            <li ng-repeat="animal in ocorrencias">
+                <div>
+                    <div class="z-depth-1 waves-effect waves-light lista-series" ng-click="verPerfil(animal)" style="background-image:  linear-gradient(to bottom,rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2),  transparent,  rgba({{verificarCor(animal)}},0.2), rgba({{verificarCor(animal)}}, 0.9) ), url('{{animal.Animal.FotoUrl}}');">
+                        <span class="title white-text" style="float:left; margin-top: 13px; font-size: 17px; margin-left: 13px;">
+                            {{animal.Animal.Nome}}
+                        </span>
+
+                        <div class="valign-wrapper row" style="margin-top: 140px;">
+                            <div class="valign-wrapper col s4" style="margin-left: 2.5px;">
+                                <span class="white-text valign" style="margin-right: 5px;"><i class="material-icons">visibility</i></span>
+                                <span class="white-text valign">{{animal.Visualizacoes | number:0}}</span>
+                            </div>
+
+                            <div class="col s8">
+                                <div class="btn-floating waves-effect waves-light right-align right valign" style="margin-right: 2.5px; background: #3498db; text-align: center; font-size: 25px;">
+                                    i
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="top: -16px; position: relative; left: 0; right: 0; text-align: center; color: #ecf0f1; font-weight: bold;">
+                            {{animal.TipoOcorrencia.Nome}}
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="col s12 center-align" style="margin-top: 15px;" ng-hide="ocorrencias.length > 0">
+            Nenhuma encontrada :(
+        </div>
+    </div>
+</div>

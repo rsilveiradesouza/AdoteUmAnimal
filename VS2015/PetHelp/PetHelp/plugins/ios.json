@@ -1,0 +1,20 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.dogstyle.pethelp"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "1573833419609766",
+            "APP_NAME": "oauthlogin-aua",
+            "PACKAGE_NAME": "com.dogstyle.pethelp"
+        }
+    },
+    "dependent_plugins": {}
+}
